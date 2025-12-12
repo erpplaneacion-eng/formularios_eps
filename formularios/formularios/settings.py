@@ -12,9 +12,15 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables from .env file
+# Buscar .env en la raíz del proyecto (dos niveles arriba de settings.py)
+ENV_PATH = BASE_DIR.parent.parent / '.env'
+load_dotenv(dotenv_path=ENV_PATH)
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +30,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-ln-&dvvt=^64(+e(dgd_*am*khhn3_bladys-_(*qm3!*51wnl')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# Si DATABASE_URL existe (producción), DEBUG debe ser False por defecto
+# Si no existe DATABASE_URL (desarrollo), DEBUG es True por defecto
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    # Producción: DEBUG False por defecto, pero puede activarse con DEBUG=True
+    DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+else:
+    # Desarrollo: DEBUG True por defecto, pero puede desactivarse con DEBUG=False
+    DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
@@ -78,7 +92,7 @@ WSGI_APPLICATION = 'formularios.wsgi.application'
 import dj_database_url
 
 # Usar PostgreSQL si DATABASE_URL está definida (producción), sino SQLite (desarrollo)
-DATABASE_URL = os.environ.get('DATABASE_URL')
+# DATABASE_URL ya fue definida arriba
 
 if DATABASE_URL:
     # Producción: PostgreSQL desde Railway

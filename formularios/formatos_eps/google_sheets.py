@@ -119,12 +119,14 @@ def find_row_by_cedula(cedula):
             # Comparar limpiando espacios en blanco
             cedula_row = str(row.get('CEDULA', '')).strip()
             if cedula_row == cedula_limpia:
+                row['_origen_hoja'] = 'Planta'  # Marcar origen
                 return row
 
         for row in manipuladoras_data:
             # Comparar limpiando espacios en blanco
             cedula_row = str(row.get('CEDULA', '')).strip()
             if cedula_row == cedula_limpia:
+                row['_origen_hoja'] = 'Manipuladoras'  # Marcar origen
                 return row
 
         return None

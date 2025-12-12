@@ -1,9 +1,12 @@
 # Credenciales y archivos sensibles
 service_account.json
+credentials.json
 *.json.key
 *.pem
 .env
-.env.local
+.env.*
+!.env.example
+!.env.development
 secrets.py
 google_credentials_for_railway.txt
 

@@ -50,6 +50,12 @@ def search_results_view(request):
                     'CODIGO_SEXO': result_data.get('CODIGO SEXO', ''),
                     'DEPARTAMENTO_NACIMIENTO': result_data.get('DEPARTAMENTO NACIMIENTO', ''),
                     'CIUDAD_NACIMIENTO': result_data.get('CIUDAD DE NACIMIENTO', ''),
+                    'EPS': result_data.get('EPS', ''),
+                    # Campos adicionales (no se muestran en la vista pero están disponibles)
+                    'EMPRESA': result_data.get('EMPRESA', ''),
+                    'AREA': result_data.get('AREA', ''),
+                    'PROGRAMA AL QUE PERTENECE': result_data.get('PROGRAMA AL QUE PERTENECE', ''),
+                    '_origen_hoja': result_data.get('_origen_hoja', ''),
                 }
                 results = normalized_result
         except ConnectionError as e:
@@ -95,6 +101,12 @@ def generar_pdf_view(request, cedula):
             'CODIGO_SEXO': datos_empleado.get('CODIGO SEXO', ''),
             'DEPARTAMENTO_NACIMIENTO': datos_empleado.get('DEPARTAMENTO NACIMIENTO', ''),
             'CIUDAD_NACIMIENTO': datos_empleado.get('CIUDAD DE NACIMIENTO', ''),
+            'EPS': datos_empleado.get('EPS', ''),
+            # Campos adicionales para el PDF (datos del empleador)
+            'EMPRESA': datos_empleado.get('EMPRESA', ''),
+            'AREA': datos_empleado.get('AREA', ''),
+            'PROGRAMA AL QUE PERTENECE': datos_empleado.get('PROGRAMA AL QUE PERTENECE', ''),
+            '_origen_hoja': datos_empleado.get('_origen_hoja', ''),  # Importante para saber de qué hoja viene
         }
 
         # Generar nombre del archivo
@@ -117,6 +129,10 @@ def generar_pdf_view(request, cedula):
 
         return response
 
+    except ValueError as e:
+        # Errores de configuración (EPS no soportada, falta template, etc.)
+        messages.error(request, str(e))
+        return redirect('formatos_eps:search_results')
     except ConnectionError as e:
         messages.error(request, 'Error de conexión con Google Sheets')
         return redirect('formatos_eps:search')

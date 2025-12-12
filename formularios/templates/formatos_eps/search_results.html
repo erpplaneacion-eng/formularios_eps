@@ -78,6 +78,7 @@
                         <thead>
                             <tr>
                                 <th>Cédula</th>
+                                <th>EPS</th>
                                 <th>Primer Apellido</th>
                                 <th>Segundo Apellido</th>
                                 <th>Nombres</th>
@@ -92,6 +93,7 @@
                             {% for row in results %}
                                 <tr>
                                     <td><strong>{{ row.CEDULA }}</strong></td>
+                                    <td>{{ row.EPS }}</td>
                                     <td>{{ row.PRIMER_APELLIDO }}</td>
                                     <td>{{ row.SEGUNDO_APELLIDO }}</td>
                                     <td>{{ row.NOMBRES }}</td>
