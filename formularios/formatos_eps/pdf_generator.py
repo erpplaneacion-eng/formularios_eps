@@ -63,48 +63,48 @@ CONFIGURACION_FORMATOS = {
     'EMSSANAR': {
         'archivo': 'Formulario_Único_de_Afiliaciones_y_Registro_Novedades_EPS_EMSSANAR.pdf',
         'campos': {
-            'CEDULA': {'x': 90, 'y': 161},
+            'CEDULA': {'x': 90, 'y': 171},
             'PRIMER_APELLIDO': {'x': 75, 'y': 153},
-            'SEGUNDO_APELLIDO': {'x': 200, 'y': 153},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 153},
             'PRIMER_NOMBRE': {'x': 350, 'y': 153},
-            'SEGUNDO_NOMBRE': {'x': 480, 'y': 153},
-            'PAIS_NACIMIENTO': {'x': 505, 'y': 181},
-            'DEPARTAMENTO_NACIMIENTO': {'x': 50, 'y': 200},
-            'CIUDAD_NACIMIENTO': {'x': 130, 'y': 200},
+            'SEGUNDO_NOMBRE': {'x': 490, 'y': 153},
+            'PAIS_NACIMIENTO': {'x': 210, 'y': 190, 'fontsize': 5},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 335, 'y': 190, 'fontsize': 6},
+            'CIUDAD_NACIMIENTO': {'x': 377, 'y': 190, 'fontsize': 6},
         },
         'fecha_nacimiento': [
-            {'x': 290, 'y': 200}, {'x': 310, 'y': 200}, # D
-            {'x': 330, 'y': 200}, {'x': 350, 'y': 200}, # M
-            {'x': 370, 'y': 200}, {'x': 390, 'y': 200}, {'x': 410, 'y': 200}, {'x': 435, 'y': 200} # Y
+            {'x': 457, 'y': 190}, {'x': 473, 'y': 190}, # D
+            {'x': 485, 'y': 190}, {'x': 498, 'y': 190}, # M
+            {'x': 510, 'y': 190}, {'x': 517, 'y': 190}, {'x': 528, 'y': 190}, {'x': 536, 'y': 190} # Y
         ],
         'sexo': {
-            '0': {'x': 312.5, 'y': 171.5},  # Masculino
-            '1': {'x': 277.5, 'y': 171.5},  # Femenino
+            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
-            {'x': 136, 'y': 115},   # Tipo de trámite
-            {'x': 269, 'y': 100},  # Tipo de afiliación
-            {'x': 393, 'y': 100},  # Régimen
-            {'x': 465, 'y': 100},  # contribucion
-            {'x': 100, 'y': 125},  # Tipo de afiliado
-            {'x': 269, 'y': 125},  # Tipo de cotizante
+            {'x': 140, 'y': 100},   # Tipo de trámite
+            {'x': 299, 'y': 93},  # Tipo de afiliación
+            {'x': 458, 'y': 96},  # Régimen
+            {'x': 581, 'y': 102},  # contribucion
+            {'x': 52, 'y': 119},  # Tipo de afiliado
+            {'x': 289, 'y': 120, 'fontsize': 3},  # Tipo de cotizante
         ],
         # Bloque 2: Administradora anterior (SURA)
         'administradora_anterior': {
             'valor': 'SURA',
-            'x': 320, 'y': 229
+            'x': 60, 'y': 259
         },
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
-            'campo_variable': {'x': 90, 'y': 589},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 238, 'y': 584},
-            'numero_documento': {'valor': '123456789-55', 'x': 310, 'y': 589},
-            'direccion': {'valor': 'calle 15 #26-101', 'x': 85, 'y': 603},
-            'telefono': {'valor': '3164219523', 'x': 218, 'y': 604},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 292, 'y': 600, 'fontsize': 8},
-            'ciudad': {'valor': 'YUMBO', 'x': 441, 'y': 598},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 491, 'y': 600, 'fontsize': 7},
+            'campo_variable': {'x': 90, 'y': 749},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 298, 'y': 751},
+            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 749},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 90, 'y': 767},
+            'telefono': {'valor': '3164219523', 'x': 218, 'y': 767},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 299, 'y': 764, 'fontsize': 4},
+            'ciudad': {'valor': 'YUMBO', 'x': 457, 'y': 767},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 390, 'y': 767, 'fontsize': 7},
         }
     },
     'SALUD TOTAL': None,
