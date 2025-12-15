@@ -74,7 +74,7 @@ CONFIGURACION_FORMATOS = {
             # Nuevos campos solicitados (Coordenadas pendientes de definir por el usuario)
             'AFP': {'x': 195, 'y': 259, 'fontsize': 8}, 
             'SALARIO_BASICO': {'x': 331, 'y': 259, 'fontsize': 8}, 
-            'CORREO_ELECTRONICO': {'x': 480, 'y': 280, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 450, 'y': 280, 'fontsize': 8},
             'DIRECCION_RESIDENCIA': {'x': 60, 'y': 280, 'fontsize': 8}, 
             'TELEFONO_MOVIL': {'x': 345, 'y': 280, 'fontsize': 8}, 
             'BARRIO': {'x': 279, 'y': 305, 'fontsize': 8}, 
@@ -91,8 +91,8 @@ CONFIGURACION_FORMATOS = {
             '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
-            '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
+            '0': {'x': 411.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '1': {'x': 371.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
@@ -348,6 +348,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'SEGUNDO_NOMBRE': segundo_nombre,
             'PAIS_NACIMIENTO': pais_nacimiento,
             'DEPARTAMENTO_NACIMIENTO': departamento_nacimiento,
+            'DEPARTAMENTO_NACIMIENTO2': departamento_nacimiento, # Mismo valor, diferente campo
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
             # Nuevos campos agregados
             'AFP': datos_empleado.get('AFP', ''),
