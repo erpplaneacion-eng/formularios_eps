@@ -71,6 +71,15 @@ CONFIGURACION_FORMATOS = {
             'PAIS_NACIMIENTO': {'x': 210, 'y': 190, 'fontsize': 7},
             'DEPARTAMENTO_NACIMIENTO': {'x': 305, 'y': 190, 'fontsize': 4},
             'CIUDAD_NACIMIENTO': {'x': 377, 'y': 190, 'fontsize': 7},
+            # Nuevos campos solicitados (Coordenadas pendientes de definir por el usuario)
+            'AFP': {'x': 195, 'y': 259, 'fontsize': 8}, 
+            'SALARIO_BASICO': {'x': 331, 'y': 259, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 480, 'y': 280, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 60, 'y': 280, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 345, 'y': 280, 'fontsize': 8}, 
+            'BARRIO': {'x': 279, 'y': 305, 'fontsize': 8}, 
+            'CIUDAD_RESIDENCIA': {'x': 190, 'y': 305, 'fontsize': 8}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 70, 'y': 305, 'fontsize': 8},
         },
         'fecha_nacimiento': [
             {'x': 457, 'y': 190}, {'x': 473, 'y': 190}, # D
@@ -78,12 +87,12 @@ CONFIGURACION_FORMATOS = {
             {'x': 510, 'y': 190}, {'x': 519, 'y': 190}, {'x': 529, 'y': 190}, {'x': 536, 'y': 190} # Y
         ],
         'sexo': {
-            '0': {'x': 332.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
             '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 410.5, 'y': 169.5, 'fontsize': 4},  # Masculino
-            '1': {'x': 372.5, 'y': 169.5, 'fontsize': 4},  # Femenino
+            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
@@ -340,6 +349,14 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'PAIS_NACIMIENTO': pais_nacimiento,
             'DEPARTAMENTO_NACIMIENTO': departamento_nacimiento,
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
+            # Nuevos campos agregados
+            'AFP': datos_empleado.get('AFP', ''),
+            'SALARIO_BASICO': datos_empleado.get('SALARIO_BASICO', ''),
+            'CORREO_ELECTRONICO': datos_empleado.get('CORREO_ELECTRONICO', ''),
+            'DIRECCION_RESIDENCIA': datos_empleado.get('DIRECCION_RESIDENCIA', ''),
+            'TELEFONO_MOVIL': datos_empleado.get('TELEFONO_MOVIL', ''),
+            'BARRIO': datos_empleado.get('BARRIO', ''),
+            'CIUDAD_RESIDENCIA': datos_empleado.get('CIUDAD_RESIDENCIA', ''),
         }
 
         for clave_campo, valor in campos_simples.items():

@@ -102,6 +102,14 @@ def generar_pdf_view(request, cedula):
             'DEPARTAMENTO_NACIMIENTO': datos_empleado.get('DEPARTAMENTO NACIMIENTO', ''),
             'CIUDAD_NACIMIENTO': datos_empleado.get('CIUDAD DE NACIMIENTO', ''),
             'EPS': datos_empleado.get('EPS', ''),
+            # Nuevos campos para EMSSANAR y otros
+            'AFP': datos_empleado.get('AFP', ''),
+            'SALARIO_BASICO': datos_empleado.get('SALARIO BASICO', ''),
+            'CORREO_ELECTRONICO': datos_empleado.get('CORREOS', ''),
+            'DIRECCION_RESIDENCIA': datos_empleado.get('DIRECCION DE VIVIENDA', ''),
+            'TELEFONO_MOVIL': datos_empleado.get('NUMERO TELEFONICO ', '').strip(),
+            'BARRIO': datos_empleado.get('BARRIO', ''),
+            'CIUDAD_RESIDENCIA': datos_empleado.get('CIUDAD') or datos_empleado.get('MUNICIPIO', ''),
             # Campos adicionales para el PDF (datos del empleador)
             'EMPRESA': datos_empleado.get('EMPRESA', ''),
             'AREA': datos_empleado.get('AREA', ''),
