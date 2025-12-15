@@ -115,6 +115,7 @@ def generar_pdf_view(request, cedula):
             'AREA': datos_empleado.get('AREA', ''),
             'PROGRAMA AL QUE PERTENECE': datos_empleado.get('PROGRAMA AL QUE PERTENECE', ''),
             '_origen_hoja': datos_empleado.get('_origen_hoja', ''),  # Importante para saber de qué hoja viene
+            'FECHA_INGRESO': datos_empleado.get('FECHA DE INGRESO (AAAAMMDD)', ''), # Nuevo campo
         }
 
         # Generar nombre del archivo

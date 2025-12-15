@@ -47,7 +47,7 @@ CONFIGURACION_FORMATOS = {
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
             'campo_variable': {'x': 90, 'y': 789},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 238, 'y': 784},
+            'nit': {'valor': 'NIT', 'x': 235, 'y': 784},
             'numero_documento': {'valor': '123456789-55', 'x': 310, 'y': 789},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 85, 'y': 603},
             'telefono': {'valor': '3164219523', 'x': 218, 'y': 604},
@@ -79,12 +79,17 @@ CONFIGURACION_FORMATOS = {
             'TELEFONO_MOVIL': {'x': 345, 'y': 280, 'fontsize': 8}, 
             'BARRIO': {'x': 279, 'y': 305, 'fontsize': 8}, 
             'CIUDAD_RESIDENCIA': {'x': 190, 'y': 305, 'fontsize': 8}, 
-            'DEPARTAMENTO_NACIMIENTO2': {'x': 70, 'y': 305, 'fontsize': 8},
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 40, 'y': 305, 'fontsize': 8, 'page': 0}, # Pagina 1
         },
         'fecha_nacimiento': [
             {'x': 457, 'y': 190}, {'x': 473, 'y': 190}, # D
             {'x': 485, 'y': 190}, {'x': 498, 'y': 190}, # M
             {'x': 510, 'y': 190}, {'x': 519, 'y': 190}, {'x': 529, 'y': 190}, {'x': 536, 'y': 190} # Y
+        ],
+        'fecha_nacimiento2': [
+             {'x': 125, 'y': 240, 'page': 1}, {'x': 138, 'y': 240, 'page': 1}, # D
+             {'x': 151, 'y': 240, 'page': 1}, {'x': 165, 'y': 240, 'page': 1}, # M
+             {'x': 178, 'y': 240, 'page': 1}, {'x': 190, 'y': 240, 'page': 1}, {'x': 202, 'y': 240, 'page': 1}, {'x': 214, 'y': 240, 'page': 1} # Y
         ],
         'sexo': {
             '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
@@ -102,6 +107,7 @@ CONFIGURACION_FORMATOS = {
             {'x': 581, 'y': 102},  # contribucion
             {'x': 52, 'y': 121},  # Tipo de afiliado
             {'x': 292, 'y': 120, 'fontsize': 4},  # Tipo de cotizante
+            {'x': 491, 'y': 298, 'fontsize': 4},  # zona
         ],
         # Bloque 2: Administradora anterior (SURA)
         'administradora_anterior': {
@@ -314,8 +320,12 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Abrir el PDF template
         doc = fitz.open(pdf_template_path)
 
-        # Obtener la primera página (asumimos que el formulario está en página 1)
-        page = doc[0]
+        # -- FUNCIONES AUXILIARES PARA MANEJO DE PÁGINAS --
+        def get_page(page_num=0):
+            """Obtiene la página segura, o None si no existe."""
+            if page_num < len(doc):
+                return doc[page_num]
+            return None
 
         # Extraer datos del empleado
         cedula = datos_empleado.get('CEDULA', '')
@@ -334,6 +344,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Obtener mapas de coordenadas de la configuración
         mapa_campos = config.get('campos', {})
         mapa_fecha = config.get('fecha_nacimiento', [])
+        mapa_fecha2 = config.get('fecha_nacimiento2', [])
         mapa_sexo = config.get('sexo', {})
         mapa_sexo_identificacion = config.get('sexo_identificacion', {})
 
@@ -363,42 +374,86 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         for clave_campo, valor in campos_simples.items():
             if valor and clave_campo in mapa_campos:
                 coords = mapa_campos[clave_campo]
-                # Priorizar fontsize de la configuración, sino usar lógica por defecto
-                if 'fontsize' in coords:
-                    size = coords['fontsize']
-                else:
-                    # Ajustar tamaño de fuente por defecto para ciertos campos
-                    size = 8 if 'DEPARTAMENTO' in clave_campo else 10
                 
-                insertar_texto_en_pdf(page, valor, coords['x'], coords['y'], fontsize=size)
+                # Determinar página (default 0)
+                page_idx = coords.get('page', 0)
+                page = get_page(page_idx)
+                
+                if page:
+                    # Priorizar fontsize de la configuración, sino usar lógica por defecto
+                    if 'fontsize' in coords:
+                        size = coords['fontsize']
+                    else:
+                        # Ajustar tamaño de fuente por defecto para ciertos campos
+                        size = 8 if 'DEPARTAMENTO' in clave_campo else 10
+                    
+                    insertar_texto_en_pdf(page, valor, coords['x'], coords['y'], fontsize=size)
 
         # -- INSERCIONES ESPECIALES --
 
         # Insertar FECHA DE NACIMIENTO
         if fecha_nacimiento and mapa_fecha:
-            insertar_fecha_nacimiento(page, fecha_nacimiento, mapa_fecha)
+            # Asumimos que fecha_nacimiento principal está en página 0 por defecto si no se especifica
+            # Pero sería mejor que la función auxiliar maneje la página también si se pasa en coords
+             # Validar que tengamos coordenadas para los 8 dígitos
+            if len(mapa_fecha) >= 8:
+                 fecha_ddmmyyyy = convertir_fecha_yyyymmdd_a_ddmmyyyy(fecha_nacimiento)
+                 if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
+                    for i, digito in enumerate(fecha_ddmmyyyy):
+                        coords = mapa_fecha[i]
+                        page_idx = coords.get('page', 0)
+                        page = get_page(page_idx)
+                        if page:
+                             insertar_texto_en_pdf(page, digito, coords['x'], coords['y'], fontsize=10)
+
+
+        # Insertar FECHA DE NACIMIENTO 2 (si existe)
+        if fecha_nacimiento and mapa_fecha2:
+             if len(mapa_fecha2) >= 8:
+                 # Usar FECHA_INGRESO para fecha_nacimiento2
+                 fecha_ingreso = datos_empleado.get('FECHA_INGRESO', '')
+                 fecha_ddmmyyyy = convertir_fecha_yyyymmdd_a_ddmmyyyy(fecha_ingreso)
+                 if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
+                    for i, digito in enumerate(fecha_ddmmyyyy):
+                        coords = mapa_fecha2[i]
+                        page_idx = coords.get('page', 0) # Aquí debe venir 'page': 1
+                        page = get_page(page_idx)
+                        if page:
+                             insertar_texto_en_pdf(page, digito, coords['x'], coords['y'], fontsize=10)
 
         # Marcar SEXO
         if codigo_sexo and str(codigo_sexo) in mapa_sexo:
             coords = mapa_sexo[str(codigo_sexo)]
-            marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+            page_idx = coords.get('page', 0)
+            page = get_page(page_idx)
+            if page:
+                marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
 
         # Marcar SEXO IDENTIFICACION
         if codigo_sexo and str(codigo_sexo) in mapa_sexo_identificacion:
             coords = mapa_sexo_identificacion[str(codigo_sexo)]
-            marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+            page_idx = coords.get('page', 0)
+            page = get_page(page_idx)
+            if page:
+                marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
 
         # -- NUEVOS BLOQUES --
 
         # 1. Datos del trámite (X's fijas)
         datos_tramite = config.get('datos_tramite', [])
         for coords in datos_tramite:
-            marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+            page_idx = coords.get('page', 0)
+            page = get_page(page_idx)
+            if page:
+                marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
 
         # 2. Administradora anterior
         admin_anterior = config.get('administradora_anterior')
         if admin_anterior:
-            insertar_texto_en_pdf(page, admin_anterior['valor'], admin_anterior['x'], admin_anterior['y'])
+            page_idx = admin_anterior.get('page', 0)
+            page = get_page(page_idx)
+            if page:
+                insertar_texto_en_pdf(page, admin_anterior['valor'], admin_anterior['x'], admin_anterior['y'])
 
         # 3. Datos del empleador
         datos_empleador = config.get('datos_empleador', {})
@@ -427,9 +482,13 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
                     valor = info['valor']
                 
                 if valor:
-                    print(f"DEBUG: Insertando campo '{key}' -> Valor: '{valor}' en ({info['x']}, {info['y']})")
-                    text_fontsize = info.get('fontsize', 10) # Obtener fontsize de la configuración, default 10
-                    insertar_texto_en_pdf(page, valor, info['x'], info['y'], fontsize=text_fontsize)
+                    page_idx = info.get('page', 0)
+                    page = get_page(page_idx)
+                    if page:
+                        print(f"DEBUG: Insertando campo '{key}' -> Valor: '{valor}' en ({info['x']}, {info['y']}) Pagina: {page_idx}")
+                        text_fontsize = info.get('fontsize', 10) # Obtener fontsize de la configuración, default 10
+                        insertar_texto_en_pdf(page, valor, info['x'], info['y'], fontsize=text_fontsize)
+
 
         # Guardar el PDF generado
         doc.save(output_path)
