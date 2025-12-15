@@ -63,32 +63,36 @@ CONFIGURACION_FORMATOS = {
     'EMSSANAR': {
         'archivo': 'Formulario_Único_de_Afiliaciones_y_Registro_Novedades_EPS_EMSSANAR.pdf',
         'campos': {
-            'CEDULA': {'x': 90, 'y': 171},
+            'CEDULA': {'x': 195, 'y': 171.5},
             'PRIMER_APELLIDO': {'x': 75, 'y': 153},
             'SEGUNDO_APELLIDO': {'x': 215, 'y': 153},
             'PRIMER_NOMBRE': {'x': 350, 'y': 153},
             'SEGUNDO_NOMBRE': {'x': 490, 'y': 153},
-            'PAIS_NACIMIENTO': {'x': 210, 'y': 190, 'fontsize': 5},
-            'DEPARTAMENTO_NACIMIENTO': {'x': 335, 'y': 190, 'fontsize': 6},
-            'CIUDAD_NACIMIENTO': {'x': 377, 'y': 190, 'fontsize': 6},
+            'PAIS_NACIMIENTO': {'x': 210, 'y': 190, 'fontsize': 7},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 305, 'y': 190, 'fontsize': 4},
+            'CIUDAD_NACIMIENTO': {'x': 377, 'y': 190, 'fontsize': 7},
         },
         'fecha_nacimiento': [
             {'x': 457, 'y': 190}, {'x': 473, 'y': 190}, # D
             {'x': 485, 'y': 190}, {'x': 498, 'y': 190}, # M
-            {'x': 510, 'y': 190}, {'x': 517, 'y': 190}, {'x': 528, 'y': 190}, {'x': 536, 'y': 190} # Y
+            {'x': 510, 'y': 190}, {'x': 519, 'y': 190}, {'x': 529, 'y': 190}, {'x': 536, 'y': 190} # Y
         ],
         'sexo': {
-            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '0': {'x': 332.5, 'y': 169.5, 'fontsize': 4},  # Masculino
             '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
+        },
+        'sexo_identificacion': {
+            '0': {'x': 410.5, 'y': 169.5, 'fontsize': 4},  # Masculino
+            '1': {'x': 372.5, 'y': 169.5, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
             {'x': 140, 'y': 100},   # Tipo de trámite
             {'x': 299, 'y': 93},  # Tipo de afiliación
-            {'x': 458, 'y': 96},  # Régimen
+            {'x': 460, 'y': 97},  # Régimen
             {'x': 581, 'y': 102},  # contribucion
-            {'x': 52, 'y': 119},  # Tipo de afiliado
-            {'x': 289, 'y': 120, 'fontsize': 3},  # Tipo de cotizante
+            {'x': 52, 'y': 121},  # Tipo de afiliado
+            {'x': 292, 'y': 120, 'fontsize': 4},  # Tipo de cotizante
         ],
         # Bloque 2: Administradora anterior (SURA)
         'administradora_anterior': {
@@ -98,13 +102,15 @@ CONFIGURACION_FORMATOS = {
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
             'campo_variable': {'x': 90, 'y': 749},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 298, 'y': 751},
+            'nit': {'valor': 'NIT', 'x': 290, 'y': 751},
             'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 749},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 90, 'y': 767},
             'telefono': {'valor': '3164219523', 'x': 218, 'y': 767},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 299, 'y': 764, 'fontsize': 4},
             'ciudad': {'valor': 'YUMBO', 'x': 457, 'y': 767},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 390, 'y': 767, 'fontsize': 7},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 380, 'y': 767, 'fontsize': 7},
+            'pais': {'valor': 'COLOMBIA', 'x': 90, 'y': 189, 'fontsize': 8},
+            'tipo_documento': {'valor': 'CC', 'x': 75, 'y': 171.5, 'fontsize': 8},
         }
     },
     'SALUD TOTAL': None,
@@ -320,6 +326,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         mapa_campos = config.get('campos', {})
         mapa_fecha = config.get('fecha_nacimiento', [])
         mapa_sexo = config.get('sexo', {})
+        mapa_sexo_identificacion = config.get('sexo_identificacion', {})
 
         # -- INSERCIÓN DE DATOS GENÉRICOS --
         
@@ -338,8 +345,13 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         for clave_campo, valor in campos_simples.items():
             if valor and clave_campo in mapa_campos:
                 coords = mapa_campos[clave_campo]
-                # Ajustar tamaño de fuente para ciertos campos si es necesario (ej: depto)
-                size = 8 if 'DEPARTAMENTO' in clave_campo else 10
+                # Priorizar fontsize de la configuración, sino usar lógica por defecto
+                if 'fontsize' in coords:
+                    size = coords['fontsize']
+                else:
+                    # Ajustar tamaño de fuente por defecto para ciertos campos
+                    size = 8 if 'DEPARTAMENTO' in clave_campo else 10
+                
                 insertar_texto_en_pdf(page, valor, coords['x'], coords['y'], fontsize=size)
 
         # -- INSERCIONES ESPECIALES --
@@ -351,6 +363,11 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Marcar SEXO
         if codigo_sexo and str(codigo_sexo) in mapa_sexo:
             coords = mapa_sexo[str(codigo_sexo)]
+            marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+
+        # Marcar SEXO IDENTIFICACION
+        if codigo_sexo and str(codigo_sexo) in mapa_sexo_identificacion:
+            coords = mapa_sexo_identificacion[str(codigo_sexo)]
             marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
 
         # -- NUEVOS BLOQUES --
