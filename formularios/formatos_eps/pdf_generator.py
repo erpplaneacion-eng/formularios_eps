@@ -77,6 +77,7 @@ CONFIGURACION_FORMATOS = {
             'BARRIO': {'x': 279, 'y': 355, 'fontsize': 8}, 
             'CIUDAD_RESIDENCIA': {'x': 190, 'y': 355, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 40, 'y': 355, 'fontsize': 8, 'page': 0},
+            'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
         },
         'fecha_nacimiento': [
             {'x': 515, 'y': 250}, {'x': 521, 'y': 250}, # D
@@ -89,11 +90,11 @@ CONFIGURACION_FORMATOS = {
              {'x': 212, 'y': 300, 'page': 1}, {'x': 218, 'y': 300, 'page': 1}, {'x': 226, 'y': 300, 'page': 1}, {'x': 232, 'y': 300, 'page': 1} # Y
         ],
         'sexo': {
-            '0': {'x': 356, 'y': 227, 'fontsize': 4},  # Masculino
+            '0': {'x': 394, 'y': 227, 'fontsize': 4},  # Masculino
             '1': {'x': 335, 'y': 227, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 505, 'y': 217, 'fontsize': 4},  # Masculino
+            '0': {'x': 524, 'y': 217, 'fontsize': 4},  # Masculino
             '1': {'x': 488, 'y': 217, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
@@ -105,6 +106,7 @@ CONFIGURACION_FORMATOS = {
             {'x': 118, 'y': 160},  # Tipo de afiliado
             {'x': 293, 'y': 168, 'fontsize': 4},  # Tipo de cotizante
             # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
+            {'x': 290, 'y': 686, 'page': 2}, # TODO: Ajustar coordenadas para la X fija en pag 3
         ],
         # Bloque 2: Administradora anterior (SURA)
         'administradora_anterior': {
@@ -118,7 +120,7 @@ CONFIGURACION_FORMATOS = {
             'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 895},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 28, 'y': 915},
             'telefono': {'valor': '3164219523', 'x': 113, 'y': 915},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 190, 'y': 915, 'fontsize': 6},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 182, 'y': 915, 'fontsize': 6},
             'ciudad': {'valor': 'YUMBO', 'x': 457, 'y': 915},
             'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 310, 'y': 915, 'fontsize': 7},
             'pais': {'valor': 'COLOMBIA', 'x': 60, 'y': 250, 'fontsize': 8},
@@ -441,6 +443,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Mapeo de variables locales a claves en la configuración
         campos_simples = {
             'CEDULA': cedula,
+            'CEDULA_PAGINA_3': cedula, # Campo duplicado para pagina 3
             'PRIMER_APELLIDO': primer_apellido,
             'SEGUNDO_APELLIDO': segundo_apellido,
             'PRIMER_NOMBRE': primer_nombre,
