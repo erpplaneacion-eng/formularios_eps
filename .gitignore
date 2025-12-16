@@ -9,6 +9,7 @@ credentials.json
 !.env.development
 secrets.py
 google_credentials_for_railway.txt
+google_credentials_railway_format.txt
 
 # Scripts de administración con credenciales
 check_database.py

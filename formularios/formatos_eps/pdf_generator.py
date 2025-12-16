@@ -160,12 +160,12 @@ CONFIGURACION_FORMATOS = {
              {'x': 178, 'y': 240, 'page': 1}, {'x': 190, 'y': 240, 'page': 1}, {'x': 202, 'y': 240, 'page': 1}, {'x': 214, 'y': 240, 'page': 1} # Y
         ],
         'sexo': {
-            '0': {'x': 341.5, 'y': 179, 'fontsize': 4},  # Masculino
-            '1': {'x': 306.5, 'y': 179, 'fontsize': 4},  # Femenino
+            '0': {'x': 334, 'y': 170, 'fontsize': 4},  # Masculino
+            '1': {'x': 298, 'y': 170, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 471, 'y': 164, 'fontsize': 4},  # Masculino
-            '1': {'x': 431, 'y': 164, 'fontsize': 4},  # Femenino
+            '0': {'x': 412, 'y': 170, 'fontsize': 4},  # Masculino
+            '1': {'x': 374, 'y': 170, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
@@ -185,7 +185,7 @@ CONFIGURACION_FORMATOS = {
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
             'campo_variable': {'x': 90, 'y': 749},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 290, 'y': 751},
+            'nit': {'valor': 'NIT', 'x': 288, 'y': 751},
             'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 749},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 90, 'y': 767},
             'telefono': {'valor': '3164219523', 'x': 218, 'y': 767},
