@@ -18,9 +18,11 @@ CONFIGURACION_FORMATOS = {
             'SEGUNDO_APELLIDO': {'x': 200, 'y': 163},
             'PRIMER_NOMBRE': {'x': 330, 'y': 163},
             'SEGUNDO_NOMBRE': {'x': 480, 'y': 163},
-            'PAIS_NACIMIENTO': {'x': 155, 'y': 170, 'fontsize': 7},
-            'DEPARTAMENTO_NACIMIENTO': {'x': 350, 'y': 195},
-            'CIUDAD_NACIMIENTO': {'x': 380, 'y': 195},
+            'PAIS_NACIMIENTO': {'x': 510, 'y': 181, 'fontsize': 7},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 55, 'y': 200, 'fontsize': 6},
+            'CIUDAD_NACIMIENTO': {'x': 130, 'y': 200},
+            'PAIS_NACIMIENTO_2': {'x': 460, 'y': 181, 'fontsize': 7}, # TODO: Ajustar coordenadas (Duplicado)
+            'TIPO_DOCUMENTO_CC': {'x': 102, 'y': 177.5, 'fontsize': 9}, # TODO: Ajustar coordenadas (Constante CC)
         },
         'fecha_nacimiento': [
             {'x': 290, 'y': 200}, {'x': 310, 'y': 200}, # D
@@ -30,6 +32,10 @@ CONFIGURACION_FORMATOS = {
         'sexo': {
             '0': {'x': 302.5, 'y': 176.5},  # Masculino
             '1': {'x': 267.5, 'y': 176.5},  # Femenino
+        },
+        'sexo_2': { # Campo de sexo duplicado
+            '0': {'x': 340, 'y': 176.5}, # TODO: Ajustar coordenadas para Masculino
+            '1': {'x': 326.5, 'y': 176.5}, # TODO: Ajustar coordenadas para Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
@@ -46,14 +52,14 @@ CONFIGURACION_FORMATOS = {
         },
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
-            'campo_variable': {'x': 90, 'y': 789},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 235, 'y': 784},
-            'numero_documento': {'valor': '123456789-55', 'x': 310, 'y': 789},
+            'campo_variable': {'x': 90, 'y': 588},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 235, 'y': 588},
+            'numero_documento': {'valor': '123456789-55', 'x': 310, 'y': 588},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 85, 'y': 603},
-            'telefono': {'valor': '3164219523', 'x': 218, 'y': 604},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 292, 'y': 600, 'fontsize': 8},
-            'ciudad': {'valor': 'YUMBO', 'x': 441, 'y': 598},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 491, 'y': 600, 'fontsize': 7},
+            'telefono': {'valor': '3164219523', 'x': 218, 'y': 603},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 292, 'y': 603, 'fontsize': 8},
+            'ciudad': {'valor': 'YUMBO', 'x': 441, 'y': 603},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 491, 'y': 603, 'fontsize': 7},
         }
     },
     # Marcadores de posición para otras EPS (se configurarán a futuro)
@@ -436,6 +442,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         mapa_fecha = config.get('fecha_nacimiento', [])
         mapa_fecha2 = config.get('fecha_nacimiento2', [])
         mapa_sexo = config.get('sexo', {})
+        mapa_sexo_2 = config.get('sexo_2', {}) # Nuevo mapa para sexo duplicado
         mapa_sexo_identificacion = config.get('sexo_identificacion', {})
 
         # -- INSERCIÓN DE DATOS GENÉRICOS --
@@ -452,6 +459,8 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'DEPARTAMENTO_NACIMIENTO': departamento_nacimiento,
             'DEPARTAMENTO_NACIMIENTO2': departamento_nacimiento, # Mismo valor, diferente campo
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
+            'PAIS_NACIMIENTO_2': pais_nacimiento, # Duplicado
+            'TIPO_DOCUMENTO_CC': 'CC', # Constante
             # Nuevos campos agregados
             'AFP': datos_empleado.get('AFP', ''),
             'SALARIO_BASICO': datos_empleado.get('SALARIO_BASICO', ''),
@@ -515,6 +524,14 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Marcar SEXO
         if codigo_sexo and str(codigo_sexo) in mapa_sexo:
             coords = mapa_sexo[str(codigo_sexo)]
+            page_idx = coords.get('page', 0)
+            page = get_page(page_idx)
+            if page:
+                marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+
+        # Marcar SEXO 2 (duplicado)
+        if codigo_sexo and str(codigo_sexo) in mapa_sexo_2:
+            coords = mapa_sexo_2[str(codigo_sexo)]
             page_idx = coords.get('page', 0)
             page = get_page(page_idx)
             if page:
