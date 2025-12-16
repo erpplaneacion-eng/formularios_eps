@@ -16,6 +16,7 @@ check_user_password.py
 create_superuser.py
 create_superuser_internal.py
 fix_users.py
+setup_database.py 
 
 # Python
 __pycache__/

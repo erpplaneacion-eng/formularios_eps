@@ -19,6 +19,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'formularios.settings')
 django.setup()
 
 # Importar despues de configurar Django
+from django.conf import settings
 from django.core.management import call_command
 from django.contrib.auth.models import User
 
@@ -101,17 +102,35 @@ def main():
     print("CREANDO USUARIOS")
     print("=" * 60)
 
+    # Obtener contraseñas seguras desde variables de entorno
+    admin_password = os.environ.get('ADMIN_PASSWORD')
+    user_password = os.environ.get('USER_PASSWORD')
+
+    # En desarrollo, usar contraseñas por defecto si no están definidas
+    if settings.DEBUG:
+        if not admin_password:
+            print("[WARN] ADMIN_PASSWORD no definida. Usando 'admin123' (SOLO DESARROLLO)")
+            admin_password = 'admin123'
+        if not user_password:
+            print("[WARN] USER_PASSWORD no definida. Usando 'erwin123' (SOLO DESARROLLO)")
+            user_password = 'erwin123'
+    else:
+        # En producción, exigir contraseñas seguras
+        if not admin_password or not user_password:
+            print("\n[ERROR] Faltan variables de entorno ADMIN_PASSWORD o USER_PASSWORD en producción.")
+            return
+
     print("\n1. Creando usuario 'erwin'...")
-    crear_usuario('erwin', 'erwin123', is_superuser=False)
+    crear_usuario('erwin', user_password, is_superuser=False)
 
     print("\n2. Creando usuario 'admin'...")
-    crear_usuario('admin', 'admin123', is_superuser=True)
+    crear_usuario('admin', admin_password, is_superuser=True)
 
     print("\n" + "=" * 60)
     print("PROCESO COMPLETADO")
     print("=" * 60)
     print("\n[OK] Configuracion finalizada exitosamente")
-    print("\nUsuarios creados:")
+    print("\nUsuarios gestionados:")
     print("  - erwin (usuario normal)")
     print("  - admin (superusuario)")
     print("\n" + "=" * 60)
