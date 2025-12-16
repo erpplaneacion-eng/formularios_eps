@@ -58,7 +58,73 @@ CONFIGURACION_FORMATOS = {
     },
     # Marcadores de posición para otras EPS (se configurarán a futuro)
     'SURA': None,
-    'SOS': None,
+    'SOS': {
+        'archivo': 'Anexo-Formulario-EPS_SOS_PBS-2025-Oficio.pdf',
+        'campos': {
+            'CEDULA': {'x': 195, 'y': 232},
+            'PRIMER_APELLIDO': {'x': 75, 'y': 210},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 210},
+            'PRIMER_NOMBRE': {'x': 330, 'y': 210},
+            'SEGUNDO_NOMBRE': {'x': 460, 'y': 210},
+            'PAIS_NACIMIENTO': {'x': 170, 'y': 250, 'fontsize': 7},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 299, 'y': 250, 'fontsize': 5},
+            'CIUDAD_NACIMIENTO': {'x': 406, 'y': 250, 'fontsize': 7},
+            'AFP': {'x': 195, 'y': 322, 'fontsize': 8}, 
+            'SALARIO_BASICO': {'x': 331, 'y': 322, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 432, 'y': 340, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 60, 'y': 340, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 345, 'y': 340, 'fontsize': 8}, 
+            'BARRIO': {'x': 279, 'y': 355, 'fontsize': 8}, 
+            'CIUDAD_RESIDENCIA': {'x': 190, 'y': 355, 'fontsize': 8}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 40, 'y': 355, 'fontsize': 8, 'page': 0},
+        },
+        'fecha_nacimiento': [
+            {'x': 515, 'y': 250}, {'x': 521, 'y': 250}, # D
+            {'x': 527, 'y': 250}, {'x': 533, 'y': 250}, # M
+            {'x': 539, 'y': 250}, {'x': 545, 'y': 250}, {'x': 551, 'y': 250}, {'x': 557, 'y': 250} # Y
+        ],
+        'fecha_nacimiento2': [
+             {'x': 178, 'y': 300, 'page': 1}, {'x': 186, 'y': 300, 'page': 1}, # D
+             {'x': 196, 'y': 300, 'page': 1}, {'x': 202, 'y': 300, 'page': 1}, # M
+             {'x': 212, 'y': 300, 'page': 1}, {'x': 218, 'y': 300, 'page': 1}, {'x': 226, 'y': 300, 'page': 1}, {'x': 232, 'y': 300, 'page': 1} # Y
+        ],
+        'sexo': {
+            '0': {'x': 356, 'y': 227, 'fontsize': 4},  # Masculino
+            '1': {'x': 335, 'y': 227, 'fontsize': 4},  # Femenino
+        },
+        'sexo_identificacion': {
+            '0': {'x': 505, 'y': 217, 'fontsize': 4},  # Masculino
+            '1': {'x': 488, 'y': 217, 'fontsize': 4},  # Femenino
+        },
+        # Bloque 1: Datos del trámite (5 X's fijas)
+        'datos_tramite': [
+            {'x': 92, 'y': 147},   # Tipo de trámite
+            {'x': 342, 'y': 130},  # Tipo de afiliación
+            {'x': 459, 'y': 136},  # Régimen
+            {'x': 549, 'y': 146},  # contribucion
+            {'x': 118, 'y': 160},  # Tipo de afiliado
+            {'x': 293, 'y': 168, 'fontsize': 4},  # Tipo de cotizante
+            # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
+        ],
+        # Bloque 2: Administradora anterior (SURA)
+        'administradora_anterior': {
+            'valor': 'SURA',
+            'x': 60, 'y': 322
+        },
+        # Bloque 3: Datos del empleador (8 campos)
+        'datos_empleador': {
+            'campo_variable': {'x': 70, 'y': 895},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 260, 'y': 895},
+            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 895},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 28, 'y': 915},
+            'telefono': {'valor': '3164219523', 'x': 113, 'y': 915},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 190, 'y': 915, 'fontsize': 6},
+            'ciudad': {'valor': 'YUMBO', 'x': 457, 'y': 915},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 310, 'y': 915, 'fontsize': 7},
+            'pais': {'valor': 'COLOMBIA', 'x': 60, 'y': 250, 'fontsize': 8},
+            'tipo_documento': {'valor': 'CC', 'x': 75, 'y': 232, 'fontsize': 8},
+        }
+    },
     'SANITAS': None,
     'EMSSANAR': {
         'archivo': 'Formulario_Único_de_Afiliaciones_y_Registro_Novedades_EPS_EMSSANAR.pdf',
@@ -92,12 +158,12 @@ CONFIGURACION_FORMATOS = {
              {'x': 178, 'y': 240, 'page': 1}, {'x': 190, 'y': 240, 'page': 1}, {'x': 202, 'y': 240, 'page': 1}, {'x': 214, 'y': 240, 'page': 1} # Y
         ],
         'sexo': {
-            '0': {'x': 331.5, 'y': 169.5, 'fontsize': 4},  # Masculino
-            '1': {'x': 296.5, 'y': 169.5, 'fontsize': 4},  # Femenino
+            '0': {'x': 341.5, 'y': 179, 'fontsize': 4},  # Masculino
+            '1': {'x': 306.5, 'y': 179, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 411.5, 'y': 169.5, 'fontsize': 4},  # Masculino
-            '1': {'x': 371.5, 'y': 169.5, 'fontsize': 4},  # Femenino
+            '0': {'x': 471, 'y': 164, 'fontsize': 4},  # Masculino
+            '1': {'x': 431, 'y': 164, 'fontsize': 4},  # Femenino
         },
         # Bloque 1: Datos del trámite (5 X's fijas)
         'datos_tramite': [
@@ -126,7 +192,29 @@ CONFIGURACION_FORMATOS = {
             'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 380, 'y': 767, 'fontsize': 7},
             'pais': {'valor': 'COLOMBIA', 'x': 90, 'y': 189, 'fontsize': 8},
             'tipo_documento': {'valor': 'CC', 'x': 75, 'y': 171.5, 'fontsize': 8},
-        }
+        },
+        'anexos': [
+            {
+                'archivo': 'Carta_Derechos_Deberes_EPS_EMSSANAR.pdf',
+                'campos': {
+                    'CIUDAD_NACIMIENTO': {'x': 160, 'y': 475, 'fontsize': 10},       # Municipio
+                    'DEPARTAMENTO_NACIMIENTO': {'x': 360, 'y': 475, 'fontsize': 10}, # Departamento
+                },
+                'fecha_ingreso_3_partes': [ # Dia, Mes, Año (2 ultimos digitos)
+                    {'x': 205, 'y': 450}, # DD
+                    {'x': 254, 'y': 450}, # MM
+                    {'x': 310, 'y': 450}, # YY
+                ],
+                'marcas_fijas': [
+                    {'x': 88, 'y': 215}, # Primera X fija
+                    {'x': 88, 'y': 270}, # Segunda X fija
+                    {'x': 88, 'y': 320}, # Tercera X fija
+                    {'x': 88, 'y': 370}, # Cuarta X fija    
+                    {'x': 88, 'y': 370}, # Quinta X fija
+                    {'x': 88, 'y': 420}, # Sexta X fija
+                ]
+            }
+        ]
     },
     'SALUD TOTAL': None,
     'ASMET SALUD': None,
@@ -493,6 +581,68 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Guardar el PDF generado
         doc.save(output_path)
         doc.close()
+
+        # Procesar Anexos (si existen)
+        anexos_config = config.get('anexos', [])
+        if anexos_config:
+            # Reabrir el documento principal para añadir páginas
+            # Nota: fitz no permite editar el mismo archivo abierto, 
+            # así que trabajamos con archivos temporales o reabrimos
+            doc_main = fitz.open(output_path)
+            
+            for anexo in anexos_config:
+                archivo_anexo = anexo.get('archivo')
+                if not archivo_anexo:
+                    continue
+                
+                path_anexo_template = os.path.join(BASE_DIR, 'formatos', archivo_anexo)
+                if not os.path.exists(path_anexo_template):
+                    print(f"Advertencia: No se encontró el anexo {path_anexo_template}")
+                    continue
+                
+                try:
+                    doc_anexo = fitz.open(path_anexo_template)
+                    page_anexo = doc_anexo[0] # Asumimos 1 pagina por anexo por ahora, o iteramos si son varias
+                    
+                    # 1. Campos simples del anexo
+                    campos_anexo = anexo.get('campos', {})
+                    for clave_campo, info in campos_anexo.items():
+                        valor = campos_simples.get(clave_campo, '')
+                        if valor:
+                            insertar_texto_en_pdf(page_anexo, valor, info['x'], info['y'], fontsize=info.get('fontsize', 10))
+                    
+                    # 2. Fecha Ingreso 3 partes (DD, MM, YY)
+                    fecha_ingreso_3_partes = anexo.get('fecha_ingreso_3_partes', [])
+                    fecha_ingreso_raw = datos_empleado.get('FECHA_INGRESO', '') # YYYYMMDD
+                    if fecha_ingreso_3_partes and fecha_ingreso_raw and len(fecha_ingreso_raw) == 8:
+                        # Extraer partes
+                        yyyy = fecha_ingreso_raw[0:4]
+                        mm = fecha_ingreso_raw[4:6]
+                        dd = fecha_ingreso_raw[6:8]
+                        yy = yyyy[2:4] # Ultimos 2 digitos
+                        
+                        partes = [dd, mm, yy]
+                        
+                        if len(fecha_ingreso_3_partes) >= 3:
+                            for i, parte in enumerate(partes):
+                                coords = fecha_ingreso_3_partes[i]
+                                insertar_texto_en_pdf(page_anexo, parte, coords['x'], coords['y'], fontsize=10)
+
+                    # 3. Marcas Fijas
+                    marcas_fijas = anexo.get('marcas_fijas', [])
+                    for marca in marcas_fijas:
+                        marcar_x_en_pdf(page_anexo, marca['x'], marca['y'], size=7)
+
+                    # Unir al documento principal
+                    doc_main.insert_pdf(doc_anexo)
+                    doc_anexo.close()
+
+                except Exception as e:
+                    print(f"Error procesando anexo {archivo_anexo}: {e}")
+            
+            # Guardar cambios finales con anexos
+            doc_main.saveIncr() # Guardado incremental sobre el mismo archivo
+            doc_main.close()
 
         return output_path
 
