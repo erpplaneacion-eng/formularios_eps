@@ -229,7 +229,69 @@ CONFIGURACION_FORMATOS = {
     'NUEVA EPS': None,
     'ASOCIACION MUTUAL SER EMPRESA SOLIDARIA DE SALUD EPS-S': None,
     'FAMISANAR': None,
-    'COOSALUD': None,
+    'COOSALUD': {
+        'archivo': 'Formulario_de_Afiliacion_y_Registro_de_Novedades_eps_coosalud.pdf',
+        'campos': {
+            'CEDULA': {'x': 215, 'y': 190},
+            'PRIMER_APELLIDO': {'x': 75, 'y': 170},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 170},
+            'PRIMER_NOMBRE': {'x': 350, 'y': 170},
+            'SEGUNDO_NOMBRE': {'x': 470, 'y': 170},
+            
+            
+            
+            
+            'AFP': {'x': 245, 'y': 250, 'fontsize': 8}, 
+            'SALARIO_BASICO': {'x': 441, 'y': 250, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 450, 'y': 265, 'fontsize': 6},
+            'DIRECCION_RESIDENCIA': {'x': 80, 'y': 265, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 365, 'y': 265, 'fontsize': 8}, 
+            'BARRIO': {'x': 350, 'y': 290, 'fontsize': 8}, 
+            'CIUDAD_RESIDENCIA': {'x': 120, 'y': 290, 'fontsize': 8}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 460, 'y': 290, 'fontsize': 8, 'page': 0},
+            'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
+        },
+        'fecha_nacimiento': [
+            {'x': 452, 'y': 192}, {'x': 464, 'y': 192}, # D
+            {'x': 472, 'y': 192}, {'x': 484, 'y': 192}, # M
+            {'x': 492, 'y': 192}, {'x': 503, 'y': 192}, {'x': 514, 'y': 192}, {'x': 524, 'y': 192} # Y
+        ],
+        
+        'sexo': {
+            '0': {'x': 405, 'y': 190, 'fontsize': 4},  # Masculino
+            '1': {'x': 366, 'y': 190, 'fontsize': 4},  # Femenino
+        },
+        
+        # Bloque 1: Datos del trámite (5 X's fijas)
+        'datos_tramite': [
+            {'x': 180, 'y': 107},   # Tipo de trámite
+            {'x': 434, 'y': 90},  # Tipo de afiliación
+            {'x': 536, 'y': 98},  # Régimen
+            
+            {'x': 124, 'y': 126},  # Tipo de afiliado
+            {'x': 323, 'y': 126, 'fontsize': 4},  # Tipo de cotizante
+            # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
+            
+        ],
+        # Bloque 2: Administradora anterior (SURA)
+        'administradora_anterior': {
+            'valor': 'SURA',
+            'x': 78, 'y': 250
+        },
+        # Bloque 3: Datos del empleador (8 campos)
+        'datos_empleador': {
+            'campo_variable': {'x': 66, 'y': 745},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 277, 'y': 745},
+            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 745},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 66, 'y': 765},
+            'telefono': {'valor': '3164219523', 'x': 224, 'y': 765},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 294, 'y': 761, 'fontsize': 5},
+            'ciudad': {'valor': 'YUMBO', 'x': 400, 'y': 765},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 483, 'y': 765, 'fontsize': 6},
+           
+            'tipo_documento': {'valor': 'CC', 'x': 165, 'y': 190, 'fontsize': 8},
+        }
+    },
     'ENTIDAD PROMOTORA DE SALUD MALLAMAS EPSI': None,
     'COMPENSAR': None,
     'A.I.C.': None
