@@ -133,7 +133,76 @@ CONFIGURACION_FORMATOS = {
             'tipo_documento': {'valor': 'CC', 'x': 75, 'y': 232, 'fontsize': 8},
         }
     },
-    'SANITAS': None,
+    'SANITAS': {
+        'archivo': 'Formulario-Afiliacion-EPS-Sanitas-2025.pdf',
+        'campos': {
+            'CEDULA': {'x': 175, 'y': 175},
+            'PRIMER_APELLIDO': {'x': 45, 'y': 154},
+            'SEGUNDO_APELLIDO': {'x': 185, 'y': 154},
+            'PRIMER_NOMBRE': {'x': 330, 'y': 154},
+            'SEGUNDO_NOMBRE': {'x': 460, 'y': 154},
+            'PAIS_NACIMIENTO': {'x': 170, 'y': 195, 'fontsize': 10},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 240, 'y': 195, 'fontsize': 10},
+            'CIUDAD_NACIMIENTO': {'x': 45, 'y': 195, 'fontsize': 10},
+            'AFP': {'x': 230, 'y': 256, 'fontsize': 10}, 
+            'SALARIO_BASICO': {'x': 360, 'y': 256, 'fontsize': 10}, 
+            'CORREO_ELECTRONICO': {'x': 200, 'y': 293, 'fontsize': 10},
+            'DIRECCION_RESIDENCIA': {'x': 90, 'y': 276, 'fontsize': 10}, 
+            'TELEFONO_MOVIL': {'x': 57, 'y': 295, 'fontsize': 10}, 
+            'BARRIO': {'x': 279, 'y': 355, 'fontsize': 10}, 
+            'CIUDAD_RESIDENCIA': {'x': 360, 'y': 195, 'fontsize': 10}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 48, 'y': 310, 'fontsize': 10, 'page': 0},
+            'CIUDAD_RESIDENCIA_3': {'x': 215, 'y': 310, 'fontsize': 10}, 
+            
+        },
+        'fecha_nacimiento': [
+            {'x': 485, 'y': 195}, {'x': 502, 'y': 195}, # D
+            {'x': 515, 'y': 195}, {'x': 525, 'y': 195}, # M
+            {'x': 535, 'y': 195}, {'x': 550, 'y': 195}, {'x': 562, 'y': 195}, {'x': 575, 'y': 195} # Y
+        ],
+        'fecha_nacimiento2': [
+             {'x': 145, 'y': 360, 'page': 1}, {'x': 155, 'y': 360, 'page': 1}, # D
+             {'x': 165, 'y': 360, 'page': 1}, {'x': 180, 'y': 360, 'page': 1}, # M
+             {'x': 195, 'y': 360, 'page': 1}, {'x': 208, 'y': 360, 'page': 1}, {'x': 218, 'y': 360, 'page': 1}, {'x': 232, 'y': 360, 'page': 1} # Y
+        ],
+        'sexo': {
+            '0': {'x': 341, 'y': 171, 'fontsize': 4},  # Masculino
+            '1': {'x': 297, 'y': 171, 'fontsize': 4},  # Femenino
+        },
+        'sexo_identificacion': {
+            '0': {'x': 383, 'y': 171, 'fontsize': 4},  # Masculino
+            '1': {'x': 363, 'y': 171, 'fontsize': 4},  # Femenino
+        },
+        # Bloque 1: Datos del trámite (5 X's fijas)
+        'datos_tramite': [
+            {'x': 175, 'y': 88},   # Tipo de trámite
+            {'x': 328, 'y': 78},  # Tipo de afiliación
+            {'x': 505, 'y': 78},  # Régimen
+            {'x': 575, 'y': 89},  # contribucion
+            {'x': 148, 'y': 100},  # Tipo de afiliado
+            {'x': 305, 'y': 110, 'fontsize': 4},  # Tipo de cotizante
+            # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
+            {'x': 290, 'y': 686, 'page': 2}, # TODO: Ajustar coordenadas para la X fija en pag 3
+        ],
+        # Bloque 2: Administradora anterior (SURA)
+        'administradora_anterior': {
+            'valor': 'SURA',
+            'x': 60, 'y': 256
+        },
+        # Bloque 3: Datos del empleador (8 campos)
+        'datos_empleador': {
+            'campo_variable': {'x': 70, 'y': 130, 'page': 1},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 260, 'y': 130, 'page': 1},
+            'numero_documento': {'valor': '123456789-55', 'x': 345, 'y': 130, 'page': 1},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 155, 'page': 1},
+            'telefono': {'valor': '3164219523', 'x': 519, 'y': 155, 'page': 1},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 80, 'y': 175, 'fontsize': 10, 'page': 1},
+            'ciudad': {'valor': 'YUMBO', 'x': 480, 'y': 176, 'page': 1},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 315, 'y': 175, 'fontsize': 9, 'page': 1},
+            'pais': {'valor': 'COLOMBIA', 'x': 515, 'y': 175, 'fontsize': 8, 'page': 0},
+            'tipo_documento': {'valor': 'CC', 'x': 55, 'y': 175, 'fontsize': 8, 'page': 0},
+        }
+    },
     'EMSSANAR': {
         'archivo': 'Formulario_Único_de_Afiliaciones_y_Registro_Novedades_EPS_EMSSANAR.pdf',
         'campos': {
@@ -256,7 +325,11 @@ CONFIGURACION_FORMATOS = {
             {'x': 472, 'y': 192}, {'x': 484, 'y': 192}, # M
             {'x': 492, 'y': 192}, {'x': 503, 'y': 192}, {'x': 514, 'y': 192}, {'x': 524, 'y': 192} # Y
         ],
-        
+        'fecha_nacimiento2': [
+             {'x': 470, 'y': 240, 'page': 1}, {'x': 478, 'y': 240, 'page': 1}, # D
+             {'x': 488, 'y': 240, 'page': 1}, {'x': 497, 'y': 240, 'page': 1}, # M
+             {'x': 504, 'y': 240, 'page': 1}, {'x': 516, 'y': 240, 'page': 1}, {'x': 524, 'y': 240, 'page': 1}, {'x': 533, 'y': 240, 'page': 1} # Y
+        ],        
         'sexo': {
             '0': {'x': 405, 'y': 190, 'fontsize': 4},  # Masculino
             '1': {'x': 366, 'y': 190, 'fontsize': 4},  # Femenino
@@ -531,6 +604,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'TELEFONO_MOVIL': datos_empleado.get('TELEFONO_MOVIL', ''),
             'BARRIO': datos_empleado.get('BARRIO', ''),
             'CIUDAD_RESIDENCIA': datos_empleado.get('CIUDAD_RESIDENCIA', ''),
+            'CIUDAD_RESIDENCIA_3': datos_empleado.get('CIUDAD_RESIDENCIA', ''),
         }
 
         for clave_campo, valor in campos_simples.items():
