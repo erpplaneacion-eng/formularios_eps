@@ -293,7 +293,70 @@ CONFIGURACION_FORMATOS = {
             }
         ]
     },
-    'SALUD TOTAL': None,
+    'SALUD TOTAL': {
+        'archivo': 'FORMULARIO-DE-AFILIACION-UNICO-Y-REGISTRO-DE-NOVEDADES_SALUDTOTAL.pdf',
+        'campos': {
+            'CEDULA': {'x': 215, 'y': 275},
+            'PRIMER_APELLIDO': {'x': 75, 'y': 250},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 250},
+            'PRIMER_NOMBRE': {'x': 360, 'y': 250},
+            'SEGUNDO_NOMBRE': {'x': 500, 'y': 250}, 
+
+            'AFP': {'x': 248, 'y': 330, 'fontsize': 8}, 
+            'SALARIO_BASICO': {'x': 441, 'y': 330, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 520, 'y': 355, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 80, 'y': 355, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 385, 'y': 355, 'fontsize': 8}, 
+            'BARRIO': {'x': 370, 'y': 375, 'fontsize': 8}, 
+            'CIUDAD_RESIDENCIA': {'x': 120, 'y': 375, 'fontsize': 8}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 500, 'y': 375, 'fontsize': 8, 'page': 0},
+            'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
+        },
+        'fecha_nacimiento': [
+            {'x': 492, 'y': 275}, {'x': 512, 'y': 275}, # D
+            {'x': 526, 'y': 275}, {'x': 544, 'y': 275}, # M
+            {'x': 564, 'y': 275}, {'x': 578, 'y': 275}, {'x': 595, 'y': 275}, {'x': 615, 'y': 275} # Y
+        ],
+        'fecha_nacimiento2': [
+             {'x': 514, 'y': 365, 'page': 1}, {'x': 524, 'y': 365, 'page': 1}, # D
+             {'x': 541, 'y': 365, 'page': 1}, {'x': 554, 'y': 365, 'page': 1}, # M
+             {'x': 569, 'y': 365, 'page': 1}, {'x': 588, 'y': 365, 'page': 1}, {'x': 603, 'y': 365, 'page': 1}, {'x': 620, 'y': 365, 'page': 1} # Y
+        ],        
+        'sexo': {
+            '0': {'x': 474, 'y': 274, 'fontsize': 4},  # Masculino
+            '1': {'x': 412, 'y': 274, 'fontsize': 4},  # Femenino
+        },
+        
+        # Bloque 1: Datos del trámite (5 X's fijas)
+        'datos_tramite': [
+            {'x': 222, 'y': 189},   # Tipo de trámite
+            {'x': 464, 'y': 169},  # Tipo de afiliación
+            {'x': 610, 'y': 188},  # Régimen
+            
+            {'x': 138, 'y': 208},  # Tipo de afiliado
+            {'x': 380, 'y': 208, 'fontsize': 4},  # Tipo de cotizante
+            # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
+            
+        ],
+        # Bloque 2: Administradora anterior (SURA)
+        'administradora_anterior': {
+            'valor': 'SURA',
+            'x': 78, 'y': 330
+        },
+        # Bloque 3: Datos del empleador (8 campos)
+        'datos_empleador': {
+            'campo_variable': {'x': 66, 'y': 835},  # Columna F (Empresa/Area)
+            'nit': {'valor': 'NIT', 'x': 309, 'y': 837, 'fontsize': 6},
+            'numero_documento': {'valor': '123456789-55', 'x': 345, 'y': 835},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 66, 'y': 855},
+            'telefono': {'valor': '3164219523', 'x': 249, 'y': 855},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 312, 'y': 853, 'fontsize': 6},
+            'ciudad': {'valor': 'YUMBO', 'x': 428, 'y': 855},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 533, 'y': 853, 'fontsize': 6},
+           
+            'tipo_documento': {'valor': 'CC', 'x': 175, 'y': 275, 'fontsize': 6},
+        }
+    },
     'ASMET SALUD': None,
     'NUEVA EPS': None,
     'ASOCIACION MUTUAL SER EMPRESA SOLIDARIA DE SALUD EPS-S': None,
