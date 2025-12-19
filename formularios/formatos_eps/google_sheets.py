@@ -114,22 +114,42 @@ def find_row_by_cedula(cedula):
 
         # Limpiar la cédula de búsqueda (eliminar espacios)
         cedula_limpia = str(cedula).strip()
+        
+        matches = []
 
+        # Buscar en Planta
         for row in planta_data:
-            # Comparar limpiando espacios en blanco
             cedula_row = str(row.get('CEDULA', '')).strip()
             if cedula_row == cedula_limpia:
-                row['_origen_hoja'] = 'Planta'  # Marcar origen
-                return row
+                row['_origen_hoja'] = 'Planta'
+                matches.append(row)
 
+        # Buscar en Manipuladoras
         for row in manipuladoras_data:
-            # Comparar limpiando espacios en blanco
             cedula_row = str(row.get('CEDULA', '')).strip()
             if cedula_row == cedula_limpia:
-                row['_origen_hoja'] = 'Manipuladoras'  # Marcar origen
-                return row
+                row['_origen_hoja'] = 'Manipuladoras'
+                matches.append(row)
 
-        return None
+        if not matches:
+            return None
+            
+        # Si hay coincidencias, ordenar por fecha de ingreso (descendente)
+        def parse_fecha(row):
+            fecha_str = row.get('FECHA DE INGRESO (AAAAMMDD)', '').strip()
+            if not fecha_str:
+                return 0 # Si no tiene fecha, va al final
+            try:
+                return int(fecha_str) # YYYYMMDD se puede ordenar como entero
+            except ValueError:
+                return 0
+
+        # Ordenar: mayor fecha primero (más reciente)
+        matches.sort(key=parse_fecha, reverse=True)
+        
+        # Retornar el más reciente
+        return matches[0]
+
     except ConnectionError:
         raise
     except Exception as e:
