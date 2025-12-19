@@ -8,6 +8,15 @@ from django.conf import settings
 # Ruta base
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Configuración de NITs por Empresa
+NITS_EMPRESAS = {
+    "CORPORACION": "805.029.170-0",
+    "CONSORCIO 2025": "901945753-1",
+    "UT ALIMENTANDO YUMBO 2025": "901979218-9",
+    "UT BUGA 2025": "901901689-9",
+    "UT YUMBO 2025": "901909200-8"
+}
+
 # Configuración de formatos por EPS
 CONFIGURACION_FORMATOS = {
     'COMFENALCO VALLE': {
@@ -23,6 +32,14 @@ CONFIGURACION_FORMATOS = {
             'CIUDAD_NACIMIENTO': {'x': 130, 'y': 200},
             'PAIS_NACIMIENTO_2': {'x': 460, 'y': 181, 'fontsize': 7}, # TODO: Ajustar coordenadas (Duplicado)
             'TIPO_DOCUMENTO_CC': {'x': 102, 'y': 177.5, 'fontsize': 9}, # TODO: Ajustar coordenadas (Constante CC)
+            'AFP': {'x': 460, 'y': 229, 'fontsize': 8}, 
+            'SALARIO_BASICO': {'x': 55, 'y': 245, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 55, 'y': 255, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 180, 'y': 245, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 485, 'y': 245, 'fontsize': 8}, 
+            'BARRIO': {'x': 378, 'y': 255, 'fontsize': 8}, 
+            'CIUDAD_RESIDENCIA': {'x': 235, 'y': 255, 'fontsize': 8}, 
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 470, 'y': 255, 'fontsize': 8, 'page': 0},
         },
         'fecha_nacimiento': [
             {'x': 290, 'y': 200}, {'x': 310, 'y': 200}, # D
@@ -790,6 +807,13 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
                 valor = ''
                 if key == 'campo_variable':
                     valor = valor_empresa
+                elif key == 'numero_documento':
+                    # Asignar NIT dinámicamente según la empresa
+                    empresa_key = valor_empresa.strip()
+                    if empresa_key in NITS_EMPRESAS:
+                        valor = NITS_EMPRESAS[empresa_key]
+                    else:
+                        valor = info.get('valor', '')
                 elif 'valor' in info:
                     valor = info['valor']
                 
