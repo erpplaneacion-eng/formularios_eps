@@ -6,7 +6,7 @@ import json
 
 # Google Sheets API setup
 SCOPE = ["https://www.googleapis.com/auth/spreadsheets"]
-SPREADSHEET_ID = '1OzyM4jlADde1MKU7INbtXvVOUaqD1KfZH_gFLOciwNk'
+SPREADSHEET_ID = '1KAtsyGy1-vyPFrdux3WWeGagL8F4zHCRMZqBKew0WYw'
 
 # Lazy loading del client para evitar errores al importar
 _client = None

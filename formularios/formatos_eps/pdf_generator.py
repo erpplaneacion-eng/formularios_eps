@@ -14,7 +14,7 @@ NITS_EMPRESAS = {
     "CONSORCIO 2025": "901945753-1",
     "UT ALIMENTANDO YUMBO 2025": "901979218-9",
     "UT BUGA 2025": "901901689-9",
-    "UT YUMBO 2025": "901909200-8"
+    "UT YUMBO 2025": "901909200-8"    
 }
 
 # Configuración de formatos por EPS
@@ -171,7 +171,7 @@ CONFIGURACION_FORMATOS = {
             'CORREO_ELECTRONICO': {'x': 200, 'y': 293, 'fontsize': 10},
             'DIRECCION_RESIDENCIA': {'x': 90, 'y': 276, 'fontsize': 10}, 
             'TELEFONO_MOVIL': {'x': 57, 'y': 295, 'fontsize': 10}, 
-            'BARRIO': {'x': 279, 'y': 355, 'fontsize': 10}, 
+            'BARRIO': {'x': 330, 'y': 310, 'fontsize': 10}, 
             'CIUDAD_RESIDENCIA': {'x': 360, 'y': 195, 'fontsize': 10}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 48, 'y': 310, 'fontsize': 10, 'page': 0},
             'CIUDAD_RESIDENCIA_3': {'x': 215, 'y': 310, 'fontsize': 10}, 
@@ -353,7 +353,7 @@ CONFIGURACION_FORMATOS = {
         'datos_tramite': [
             {'x': 222, 'y': 189},   # Tipo de trámite
             {'x': 464, 'y': 169},  # Tipo de afiliación
-            {'x': 610, 'y': 188},  # Régimen
+            {'x': 547, 'y': 188},  # Régimen
             
             {'x': 138, 'y': 208},  # Tipo de afiliado
             {'x': 380, 'y': 208, 'fontsize': 4},  # Tipo de cotizante
