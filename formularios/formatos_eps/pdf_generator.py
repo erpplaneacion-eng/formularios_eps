@@ -38,9 +38,9 @@ CONFIGURACION_FORMATOS = {
             'AFP': {'x': 460, 'y': 229, 'fontsize': 8}, 
             'SALARIO_BASICO': {'x': 55, 'y': 245, 'fontsize': 8}, 
             'CORREO_ELECTRONICO': {'x': 55, 'y': 255, 'fontsize': 8},
-            'DIRECCION_RESIDENCIA': {'x': 180, 'y': 245, 'fontsize': 8}, 
-            'TELEFONO_MOVIL': {'x': 485, 'y': 245, 'fontsize': 8}, 
-            'BARRIO': {'x': 378, 'y': 255, 'fontsize': 8}, 
+            'DIRECCION_RESIDENCIA': {'x': 175, 'y': 245, 'fontsize': 6}, 
+            'TELEFONO_MOVIL': {'x': 485, 'y': 235, 'fontsize': 6}, 
+            'BARRIO': {'x': 368, 'y': 255, 'fontsize': 5}, 
             'CIUDAD_RESIDENCIA': {'x': 235, 'y': 255, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 470, 'y': 255, 'fontsize': 8, 'page': 0},
         },
@@ -104,8 +104,8 @@ CONFIGURACION_FORMATOS = {
             'SALARIO_BASICO': {'x': 331, 'y': 322, 'fontsize': 8}, 
             'CORREO_ELECTRONICO': {'x': 432, 'y': 340, 'fontsize': 8},
             'DIRECCION_RESIDENCIA': {'x': 60, 'y': 340, 'fontsize': 8}, 
-            'TELEFONO_MOVIL': {'x': 345, 'y': 340, 'fontsize': 8}, 
-            'BARRIO': {'x': 279, 'y': 355, 'fontsize': 8}, 
+            'TELEFONO_MOVIL': {'x': 340, 'y': 334, 'fontsize': 8}, 
+            'BARRIO': {'x': 253, 'y': 355, 'fontsize': 6}, 
             'CIUDAD_RESIDENCIA': {'x': 190, 'y': 355, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 40, 'y': 355, 'fontsize': 8, 'page': 0},
             'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
@@ -174,7 +174,7 @@ CONFIGURACION_FORMATOS = {
             'CORREO_ELECTRONICO': {'x': 200, 'y': 293, 'fontsize': 10},
             'DIRECCION_RESIDENCIA': {'x': 90, 'y': 276, 'fontsize': 10}, 
             'TELEFONO_MOVIL': {'x': 57, 'y': 295, 'fontsize': 10}, 
-            'BARRIO': {'x': 330, 'y': 310, 'fontsize': 10}, 
+            'BARRIO': {'x': 325, 'y': 310, 'fontsize': 5}, 
             'CIUDAD_RESIDENCIA': {'x': 360, 'y': 195, 'fontsize': 10}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 48, 'y': 310, 'fontsize': 10, 'page': 0},
             'CIUDAD_RESIDENCIA_3': {'x': 215, 'y': 310, 'fontsize': 10}, 
@@ -216,7 +216,7 @@ CONFIGURACION_FORMATOS = {
         },
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
-            'campo_variable': {'x': 70, 'y': 130, 'page': 1},  # Columna F (Empresa/Area)
+            'campo_variable': {'x': 60, 'y': 130, 'page': 1},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 260, 'y': 130, 'page': 1},
             'numero_documento': {'valor': '123456789-55', 'x': 345, 'y': 130, 'page': 1},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 155, 'page': 1},
@@ -242,10 +242,10 @@ CONFIGURACION_FORMATOS = {
             # Nuevos campos solicitados (Coordenadas pendientes de definir por el usuario)
             'AFP': {'x': 195, 'y': 259, 'fontsize': 8}, 
             'SALARIO_BASICO': {'x': 331, 'y': 259, 'fontsize': 8}, 
-            'CORREO_ELECTRONICO': {'x': 450, 'y': 280, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 430, 'y': 280, 'fontsize': 6},
             'DIRECCION_RESIDENCIA': {'x': 60, 'y': 280, 'fontsize': 8}, 
             'TELEFONO_MOVIL': {'x': 345, 'y': 280, 'fontsize': 8}, 
-            'BARRIO': {'x': 279, 'y': 305, 'fontsize': 8}, 
+            'BARRIO': {'x': 277, 'y': 305, 'fontsize': 6}, 
             'CIUDAD_RESIDENCIA': {'x': 190, 'y': 305, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 40, 'y': 305, 'fontsize': 8, 'page': 0}, # Pagina 1
         },
@@ -329,10 +329,10 @@ CONFIGURACION_FORMATOS = {
 
             'AFP': {'x': 248, 'y': 330, 'fontsize': 8}, 
             'SALARIO_BASICO': {'x': 441, 'y': 330, 'fontsize': 8}, 
-            'CORREO_ELECTRONICO': {'x': 520, 'y': 355, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 498, 'y': 355, 'fontsize': 6},
             'DIRECCION_RESIDENCIA': {'x': 80, 'y': 355, 'fontsize': 8}, 
             'TELEFONO_MOVIL': {'x': 385, 'y': 355, 'fontsize': 8}, 
-            'BARRIO': {'x': 370, 'y': 375, 'fontsize': 8}, 
+            'BARRIO': {'x': 358, 'y': 375, 'fontsize': 6}, 
             'CIUDAD_RESIDENCIA': {'x': 120, 'y': 375, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 500, 'y': 375, 'fontsize': 8, 'page': 0},
             'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
@@ -403,7 +403,7 @@ CONFIGURACION_FORMATOS = {
             'CORREO_ELECTRONICO': {'x': 425, 'y': 265, 'fontsize': 5},
             'DIRECCION_RESIDENCIA': {'x': 64, 'y': 265, 'fontsize': 8}, 
             'TELEFONO_MOVIL': {'x': 365, 'y': 265, 'fontsize': 8}, 
-            'BARRIO': {'x': 350, 'y': 290, 'fontsize': 8}, 
+            'BARRIO': {'x': 310, 'y': 290, 'fontsize': 5}, 
             'CIUDAD_RESIDENCIA': {'x': 120, 'y': 290, 'fontsize': 8}, 
             'DEPARTAMENTO_NACIMIENTO2': {'x': 460, 'y': 290, 'fontsize': 8, 'page': 0},
             'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
@@ -698,11 +698,11 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         for clave_campo, valor in campos_simples.items():
             if valor and clave_campo in mapa_campos:
                 coords = mapa_campos[clave_campo]
-                
+
                 # Determinar página (default 0)
                 page_idx = coords.get('page', 0)
                 page = get_page(page_idx)
-                
+
                 if page:
                     # Priorizar fontsize de la configuración, sino usar lógica por defecto
                     if 'fontsize' in coords:
@@ -710,8 +710,18 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
                     else:
                         # Ajustar tamaño de fuente por defecto para ciertos campos
                         size = 8 if 'DEPARTAMENTO' in clave_campo else 10
-                    
-                    insertar_texto_en_pdf(page, valor, coords['x'], coords['y'], fontsize=size)
+
+                    # Manejo especial para TELEFONO_MOVIL con guión (excepto para SANITAS)
+                    if clave_campo == 'TELEFONO_MOVIL' and '-' in str(valor) and nombre_eps != 'SANITAS':
+                        # Dividir por el guión
+                        telefonos = str(valor).split('-')
+                        # Insertar primer teléfono en la posición original
+                        insertar_texto_en_pdf(page, telefonos[0].strip(), coords['x'], coords['y'], fontsize=size)
+                        # Insertar segundo teléfono 10 puntos más abajo
+                        if len(telefonos) > 1:
+                            insertar_texto_en_pdf(page, telefonos[1].strip(), coords['x'], coords['y'] + 10, fontsize=size)
+                    else:
+                        insertar_texto_en_pdf(page, valor, coords['x'], coords['y'], fontsize=size)
 
         # -- INSERCIONES ESPECIALES --
 
