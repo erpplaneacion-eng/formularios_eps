@@ -400,8 +400,8 @@ CONFIGURACION_FORMATOS = {
             
             'AFP': {'x': 245, 'y': 250, 'fontsize': 8}, 
             'SALARIO_BASICO': {'x': 441, 'y': 250, 'fontsize': 8}, 
-            'CORREO_ELECTRONICO': {'x': 450, 'y': 265, 'fontsize': 6},
-            'DIRECCION_RESIDENCIA': {'x': 80, 'y': 265, 'fontsize': 8}, 
+            'CORREO_ELECTRONICO': {'x': 425, 'y': 265, 'fontsize': 5},
+            'DIRECCION_RESIDENCIA': {'x': 64, 'y': 265, 'fontsize': 8}, 
             'TELEFONO_MOVIL': {'x': 365, 'y': 265, 'fontsize': 8}, 
             'BARRIO': {'x': 350, 'y': 290, 'fontsize': 8}, 
             'CIUDAD_RESIDENCIA': {'x': 120, 'y': 290, 'fontsize': 8}, 
