@@ -35,13 +35,13 @@ CONFIGURACION_FORMATOS = {
             'CIUDAD_NACIMIENTO': {'x': 130, 'y': 200},
             'PAIS_NACIMIENTO_2': {'x': 460, 'y': 181, 'fontsize': 7}, # TODO: Ajustar coordenadas (Duplicado)
             'TIPO_DOCUMENTO_CC': {'x': 102, 'y': 177.5, 'fontsize': 9}, # TODO: Ajustar coordenadas (Constante CC)
-            'AFP': {'x': 460, 'y': 229, 'fontsize': 8}, 
-            'SALARIO_BASICO': {'x': 55, 'y': 245, 'fontsize': 8}, 
+            'AFP': {'x': 460, 'y': 229, 'fontsize': 8},
+            'SALARIO_BASICO': {'x': 55, 'y': 245, 'fontsize': 8},
             'CORREO_ELECTRONICO': {'x': 55, 'y': 255, 'fontsize': 8},
-            'DIRECCION_RESIDENCIA': {'x': 175, 'y': 245, 'fontsize': 6}, 
-            'TELEFONO_MOVIL': {'x': 485, 'y': 235, 'fontsize': 6}, 
-            'BARRIO': {'x': 368, 'y': 255, 'fontsize': 5}, 
-            'CIUDAD_RESIDENCIA': {'x': 235, 'y': 255, 'fontsize': 8}, 
+            'DIRECCION_RESIDENCIA': {'x': 175, 'y': 245, 'fontsize': 6},
+            'TELEFONO_MOVIL': {'x': 485, 'y': 235, 'fontsize': 6},
+            'BARRIO': {'x': 368, 'y': 255, 'fontsize': 5},
+            'CIUDAD_RESIDENCIA': {'x': 235, 'y': 255, 'fontsize': 8},
             'DEPARTAMENTO_NACIMIENTO2': {'x': 470, 'y': 255, 'fontsize': 8, 'page': 0},
         },
         'fecha_nacimiento': [
@@ -85,7 +85,15 @@ CONFIGURACION_FORMATOS = {
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 292, 'y': 603, 'fontsize': 8},
             'ciudad': {'valor': 'YUMBO', 'x': 441, 'y': 603},
             'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 491, 'y': 603, 'fontsize': 7},
-        }
+        },
+        # Preguntas en página 2 (5 X's fijas - solo COMFENALCO VALLE)
+        'preguntas_pagina_2': [
+            {'x': 552, 'y': 178, 'page': 1},  # Pregunta 1
+            {'x': 552, 'y': 206, 'page': 1},  # Pregunta 2
+            {'x': 552, 'y': 231, 'page': 1},  # Pregunta 3
+            {'x': 552, 'y': 251, 'page': 1},  # Pregunta 4            
+            {'x': 552, 'y': 272, 'page': 1},  # Pregunta 5
+        ]
     },
     # Marcadores de posición para otras EPS (se configurarán a futuro)
     'SURA': None,
@@ -797,7 +805,16 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             if page:
                 insertar_texto_en_pdf(page, admin_anterior['valor'], admin_anterior['x'], admin_anterior['y'])
 
-        # 3. Datos del empleador
+        # 3. Preguntas página 2 (solo COMFENALCO VALLE)
+        if nombre_eps == 'COMFENALCO VALLE':
+            preguntas_pag2 = config.get('preguntas_pagina_2', [])
+            for coords in preguntas_pag2:
+                page_idx = coords.get('page', 1)
+                page = get_page(page_idx)
+                if page:
+                    marcar_x_en_pdf(page, coords['x'], coords['y'], size=7)
+
+        # 4. Datos del empleador
         datos_empleador = config.get('datos_empleador', {})
         if datos_empleador:
             # Obtener valor variable según la hoja de origen
