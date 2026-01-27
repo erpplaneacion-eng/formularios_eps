@@ -107,6 +107,34 @@ def get_sheet_data(sheet_name):
         logger.error(f"Error al obtener datos de la hoja '{sheet_name}': {str(e)}")
         raise
 
+def buscar_departamento_por_ciudad(ciudad):
+    """
+    Busca el departamento correspondiente a un municipio en la pestaña 'Codigo Pais-Dpto-Ciudad'.
+    Columna A = Departamento, Columna B = Municipio.
+
+    Args:
+        ciudad (str): Nombre del municipio a buscar.
+
+    Returns:
+        str: Nombre del departamento, o cadena vacía si no se encuentra.
+    """
+    if not ciudad or not str(ciudad).strip():
+        return ''
+
+    ciudad_limpia = str(ciudad).strip().upper()
+
+    try:
+        data = get_sheet_data('Codigo Pais-Dpto-Ciudad')
+        for row in data:
+            municipio = str(row.get('Municipio', '')).strip().upper()
+            if municipio == ciudad_limpia:
+                return row.get('Departamento', '')
+        return ''
+    except Exception as e:
+        logger.error(f"Error al buscar departamento para ciudad '{ciudad}': {str(e)}")
+        return ''
+
+
 def find_row_by_cedula(cedula):
     try:
         planta_data = get_sheet_data('Planta')

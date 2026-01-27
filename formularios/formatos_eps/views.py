@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import FileResponse, Http404
-from .google_sheets import find_row_by_cedula
+from .google_sheets import find_row_by_cedula, buscar_departamento_por_ciudad
 from .pdf_generator import rellenar_pdf_empleado, generar_nombre_archivo_pdf
 import os
 import tempfile
@@ -110,6 +110,7 @@ def generar_pdf_view(request, cedula):
             'TELEFONO_MOVIL': datos_empleado.get('NUMERO TELEFONICO ', '').strip(),
             'BARRIO': datos_empleado.get('BARRIO', ''),
             'CIUDAD_RESIDENCIA': datos_empleado.get('CIUDAD') or datos_empleado.get('MUNICIPIO', ''),
+            'DEPARTAMENTO_POR_CIUDAD': buscar_departamento_por_ciudad(datos_empleado.get('CIUDAD') or datos_empleado.get('MUNICIPIO', '')),
             # Campos adicionales para el PDF (datos del empleador)
             'EMPRESA': datos_empleado.get('EMPRESA', ''),
             'AREA': datos_empleado.get('AREA', ''),

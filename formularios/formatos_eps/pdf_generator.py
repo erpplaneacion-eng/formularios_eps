@@ -688,7 +688,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'SEGUNDO_NOMBRE': segundo_nombre,
             'PAIS_NACIMIENTO': pais_nacimiento,
             'DEPARTAMENTO_NACIMIENTO': departamento_nacimiento,
-            'DEPARTAMENTO_NACIMIENTO2': departamento_nacimiento, # Mismo valor, diferente campo
+            'DEPARTAMENTO_NACIMIENTO2': datos_empleado.get('DEPARTAMENTO_POR_CIUDAD', '') or departamento_nacimiento,
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
             'CIUDAD_NACIMIENTO_2': ciudad_nacimiento, # Duplicado
             'PAIS_NACIMIENTO_2': pais_nacimiento, # Duplicado
