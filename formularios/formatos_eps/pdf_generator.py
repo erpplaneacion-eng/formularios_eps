@@ -177,13 +177,13 @@ CONFIGURACION_FORMATOS = {
             'PAIS_NACIMIENTO': {'x': 170, 'y': 195, 'fontsize': 10},
             'DEPARTAMENTO_NACIMIENTO': {'x': 240, 'y': 195, 'fontsize': 10},
             'CIUDAD_NACIMIENTO': {'x': 45, 'y': 195, 'fontsize': 10},
-            'AFP': {'x': 230, 'y': 256, 'fontsize': 10}, 
-            'SALARIO_BASICO': {'x': 360, 'y': 256, 'fontsize': 10}, 
+            'CIUDAD_NACIMIENTO_2': {'x': 360, 'y': 195, 'fontsize': 10},
+            'AFP': {'x': 230, 'y': 256, 'fontsize': 10},
+            'SALARIO_BASICO': {'x': 360, 'y': 256, 'fontsize': 10},
             'CORREO_ELECTRONICO': {'x': 200, 'y': 293, 'fontsize': 10},
-            'DIRECCION_RESIDENCIA': {'x': 90, 'y': 276, 'fontsize': 10}, 
-            'TELEFONO_MOVIL': {'x': 57, 'y': 295, 'fontsize': 10}, 
-            'BARRIO': {'x': 325, 'y': 310, 'fontsize': 5}, 
-            'CIUDAD_RESIDENCIA': {'x': 360, 'y': 195, 'fontsize': 10}, 
+            'DIRECCION_RESIDENCIA': {'x': 90, 'y': 276, 'fontsize': 10},
+            'TELEFONO_MOVIL': {'x': 57, 'y': 295, 'fontsize': 10},
+            'BARRIO': {'x': 325, 'y': 310, 'fontsize': 5},
             'DEPARTAMENTO_NACIMIENTO2': {'x': 48, 'y': 310, 'fontsize': 10, 'page': 0},
             'CIUDAD_RESIDENCIA_3': {'x': 215, 'y': 310, 'fontsize': 10}, 
             
@@ -690,6 +690,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'DEPARTAMENTO_NACIMIENTO': departamento_nacimiento,
             'DEPARTAMENTO_NACIMIENTO2': departamento_nacimiento, # Mismo valor, diferente campo
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
+            'CIUDAD_NACIMIENTO_2': ciudad_nacimiento, # Duplicado
             'PAIS_NACIMIENTO_2': pais_nacimiento, # Duplicado
             'TIPO_DOCUMENTO_CC': 'CC', # Constante
             # Nuevos campos agregados
