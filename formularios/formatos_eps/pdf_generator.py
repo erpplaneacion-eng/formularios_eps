@@ -16,8 +16,9 @@ NITS_EMPRESAS = {
     "UT BUGA 2025": "901901689-9",
     "UT YUMBO 2025": "901909200-8",
     "CONSORCIO 2026": "902021552-6",
-    "UT ALIMENTANDO YUMBO 2026": "902027434-2",
-    "UT BUGA 2026": "902023530-3",    
+    "UT YUMBO 2026": "902027434-2",
+    "UT BUGA 2026": "902023530-3",  
+      
 }
 
 # Configuración de formatos por EPS
