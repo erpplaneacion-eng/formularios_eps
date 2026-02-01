@@ -45,6 +45,8 @@ CONFIGURACION_FORMATOS = {
             'BARRIO': {'x': 368, 'y': 255, 'fontsize': 5},
             'CIUDAD_RESIDENCIA': {'x': 235, 'y': 255, 'fontsize': 8},
             'DEPARTAMENTO_NACIMIENTO2': {'x': 470, 'y': 255, 'fontsize': 8, 'page': 0},
+            'CEDULA_PAGINA_2_1': {'x': 160, 'y': 340, 'page': 1}, # Mitad izquierda (Ajustar coordenada)
+            'CEDULA_PAGINA_2_2': {'x': 230, 'y': 1014, 'page': 1}, # Inferior centrada (Ajustar coordenada)
         },
         'fecha_nacimiento': [
             {'x': 290, 'y': 200}, {'x': 310, 'y': 200}, # D
@@ -684,6 +686,8 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         campos_simples = {
             'CEDULA': cedula,
             'CEDULA_PAGINA_3': cedula, # Campo duplicado para pagina 3
+            'CEDULA_PAGINA_2_1': cedula, # Pagina 2 mitad
+            'CEDULA_PAGINA_2_2': cedula, # Pagina 2 abajo
             'PRIMER_APELLIDO': primer_apellido,
             'SEGUNDO_APELLIDO': segundo_apellido,
             'PRIMER_NOMBRE': primer_nombre,
