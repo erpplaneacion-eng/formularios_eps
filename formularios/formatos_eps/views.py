@@ -10,7 +10,7 @@ import tempfile
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('formatos_eps:search')
+        return redirect('formatos_eps:dashboard')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -19,11 +19,15 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('formatos_eps:search')
+            return redirect('formatos_eps:dashboard')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
 
     return render(request, 'formatos_eps/login.html')
+
+@login_required(login_url='formatos_eps:login')
+def dashboard_view(request):
+    return render(request, 'formatos_eps/dashboard.html')
 
 @login_required(login_url='formatos_eps:login')
 def search_view(request):

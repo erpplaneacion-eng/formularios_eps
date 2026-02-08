@@ -30,55 +30,76 @@ body {
     min-height: 100vh;
 }
 
+/* ========== Video Background ========== */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.login-overlay {
+    display: none;
+}
+
 /* ========== Login Page ========== */
 .login-page {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     min-height: 100vh;
-    padding: 1rem;
+    padding: 1rem 10% 1rem 1rem;
+    position: relative;
+    background: transparent; /* Override default background when video is present */
 }
 
 .login-container {
     width: 100%;
     max-width: 420px;
+    z-index: 10; /* Ensure login card is above video and overlay */
 }
 
 .login-card {
-    background: var(--bg-white);
-    border-radius: 16px;
-    box-shadow: var(--shadow-xl);
+    background: rgba(16, 185, 129, 0.1); /* Greenish glassmorphism tint */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     overflow: hidden;
-    animation: slideUp 0.4s ease-out;
+    animation: slideInRight 0.5s ease-out;
 }
 
-@keyframes slideUp {
+@keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateX(30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
 .login-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: rgba(255, 255, 255, 0.05);
     color: white;
     padding: 2.5rem 2rem;
     text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo-container {
     margin-bottom: 1rem;
 }
 
-.logo-icon {
-    width: 64px;
-    height: 64px;
-    stroke: white;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+.logo-img {
+    width: 120px; /* Tamaño ajustado para la imagen de las manos */
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
 }
 
 .login-header h1 {
@@ -107,8 +128,9 @@ body {
     display: block;
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .input-with-icon {
@@ -122,24 +144,30 @@ body {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    stroke: var(--text-secondary);
+    stroke: white;
     pointer-events: none;
 }
 
 .form-input {
     width: 100%;
     padding: 0.75rem 0.75rem 0.75rem 2.75rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
     font-size: 0.95rem;
     transition: all 0.2s ease;
-    background: var(--bg-white);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .form-input:focus {
     outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: white;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .form-input::placeholder {
@@ -151,7 +179,7 @@ body {
 .btn-primary {
     width: 100%;
     padding: 0.875rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%); /* Green gradient */
     color: white;
     border: none;
     border-radius: 8px;
@@ -258,15 +286,15 @@ body {
 }
 
 .login-footer {
-    background: var(--bg-light);
+    background: rgba(0, 0, 0, 0.1);
     padding: 1.25rem;
     text-align: center;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .login-footer p {
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* ========== App Container ========== */
@@ -361,6 +389,86 @@ body {
     font-size: 0.95rem;
     color: var(--text-secondary);
 }
+
+/* ========== Dashboard Modules ========== */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.module-card {
+    background: var(--bg-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--secondary-color);
+}
+
+.module-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.module-card:hover .module-icon-container {
+    transform: scale(1.1);
+}
+
+.module-icon {
+    width: 40px;
+    height: 40px;
+    stroke-width: 2;
+}
+
+.module-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.module-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.module-badge {
+    padding: 0.35rem 1rem;
+    background: var(--bg-light);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Color themes for modules */
+.bg-blue { background-color: #eff6ff; color: #2563eb; }
+.bg-green { background-color: #ecfdf5; color: #059669; }
+.bg-purple { background-color: #f5f3ff; color: #7c3aed; }
 
 /* ========== Search Form ========== */
 .search-form {

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Gestión Humana</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'formatos_eps/css/style.css' %}">
+</head>
+<body class="app-page">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">
+                <svg class="navbar-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <span class="navbar-title">Gestión Humana CHVS</span>
+            </div>
+            <div class="navbar-user">
+                <div class="user-info">
+                    <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{ user.username }}</span>
+                </div>
+                <a href="{% url 'formatos_eps:logout' %}" class="btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path>
+                    </svg>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header style="margin-bottom: 3rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem;">Sistema de Gestión Humana</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Bienvenido al portal centralizado de servicios para colaboradores</p>
+        </header>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="module-grid">
+            <!-- Formulación de EPS -->
+            <a href="{% url 'formatos_eps:search' %}" class="module-card">
+                <div class="module-icon-container bg-blue">
+                    <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <h2 class="module-title">Formularios EPS</h2>
+                <p class="module-description">Generación automática de formularios de afiliación para diferentes entidades prestadoras de salud.</p>
+            </a>
+
+            <!-- Certificados Laborales -->
+            <a href="https://certificadoslaboraleschvs-main-production.up.railway.app/" target="_blank" class="module-card">
+                <div class="module-icon-container bg-green">
+                    <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h2 class="module-title">Certificados Laborales</h2>
+                <p class="module-description">Portal para la solicitud y descarga de certificaciones de vinculación laboral y experiencia.</p>
+            </a>
+
+            <!-- Incapacidades -->
+            <a href="https://incapacidadesgestion-production.up.railway.app/" target="_blank" class="module-card">
+                <div class="module-icon-container bg-purple">
+                    <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                </div>
+                <h2 class="module-title">Gestión de Incapacidades</h2>
+                <p class="module-description">Registro y seguimiento de incapacidades médicas y reportes ante las entidades de salud.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer style="margin-top: 5rem; text-align: center; color: var(--text-secondary); padding: 2rem;">
+        <p>&copy; 2026 Corporación Hacia un Valle Solidario - CHVS</p>
+    </footer>
+</body>
+</html>

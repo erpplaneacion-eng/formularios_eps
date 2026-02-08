@@ -8,15 +8,20 @@
     <link rel="stylesheet" href="{% static 'formatos_eps/css/style.css' %}">
 </head>
 <body class="login-page">
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="video-background">
+        <source src="{% static 'formatos_eps/assets/background.mp4' %}" type="video/mp4">
+        Tu navegador no soporta el formato de video.
+    </video>
+    <div class="login-overlay"></div>
+
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
                 <div class="logo-container">
-                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
+                    <img src="{% static 'formatos_eps/assets/CHVS SOLO MANITOS.png' %}" alt="Logo CHVS" class="logo-img">
                 </div>
-                <h1>Sistema de Gestión EPS</h1>
+                <h1>Gestion Humana CHVS</h1>
                 <p class="subtitle">Formularios de Afiliación</p>
             </div>
 
@@ -62,7 +67,7 @@
             </form>
 
             <div class="login-footer">
-                <p>&copy; 2025 Sistema formularios EPS - Corporacion hacia un Valle Solidario</p>
+                <p>&copy; 2026 Sistema de gestion humana - Corporacion hacia un Valle Solidario</p>
             </div>
         </div>
     </div>
