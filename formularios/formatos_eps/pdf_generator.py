@@ -16,7 +16,7 @@ NITS_EMPRESAS = {
     "UT BUGA 2025": "901901689-9",
     "UT YUMBO 2025": "901909200-8",
     "CONSORCIO 2026": "902021552-6",
-    "UT YUMBO 2026": "902027434-2",
+    "UT ALIMENTANDO YUMBO 2026": "902027434-2",
     "UT BUGA 2026": "902023530-3", 
      
       
@@ -296,7 +296,7 @@ CONFIGURACION_FORMATOS = {
         },
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
-            'campo_variable': {'x': 90, 'y': 749},  # Columna F (Empresa/Area)
+            'campo_variable': {'x': 30, 'y': 749},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 288, 'y': 751},
             'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 749},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 90, 'y': 767},
