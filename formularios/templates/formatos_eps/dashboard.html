@@ -52,6 +52,7 @@
 
         <div class="module-grid">
             <!-- Formulación de EPS -->
+            {% if user.is_superuser or perms.formatos_eps.ver_eps %}
             <a href="{% url 'formatos_eps:search' %}" class="module-card">
                 <div class="module-icon-container bg-blue">
                     <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -65,8 +66,10 @@
                 <h2 class="module-title">Formularios EPS</h2>
                 <p class="module-description">Generación automática de formularios de afiliación para diferentes entidades prestadoras de salud.</p>
             </a>
+            {% endif %}
 
             <!-- Certificados Laborales -->
+            {% if user.is_superuser or perms.formatos_eps.ver_certificados %}
             <a href="https://certificadoslaboraleschvs-main-production.up.railway.app/" target="_blank" class="module-card">
                 <div class="module-icon-container bg-green">
                     <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -77,8 +80,10 @@
                 <h2 class="module-title">Certificados Laborales</h2>
                 <p class="module-description">Portal para la solicitud y descarga de certificaciones de vinculación laboral y experiencia.</p>
             </a>
+            {% endif %}
 
             <!-- Incapacidades -->
+            {% if user.is_superuser or perms.formatos_eps.ver_incapacidades %}
             <a href="https://incapacidadesgestion-production.up.railway.app/" target="_blank" class="module-card">
                 <div class="module-icon-container bg-purple">
                     <svg class="module-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -89,6 +94,7 @@
                 <h2 class="module-title">Gestión de Incapacidades</h2>
                 <p class="module-description">Registro y seguimiento de incapacidades médicas y reportes ante las entidades de salud.</p>
             </a>
+            {% endif %}
         </div>
     </main>
 

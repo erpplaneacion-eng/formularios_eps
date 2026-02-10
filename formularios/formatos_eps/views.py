@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.http import FileResponse, Http404
 from .google_sheets import find_row_by_cedula, buscar_departamento_por_ciudad
@@ -30,10 +30,12 @@ def dashboard_view(request):
     return render(request, 'formatos_eps/dashboard.html')
 
 @login_required(login_url='formatos_eps:login')
+@permission_required('formatos_eps.ver_eps', login_url='formatos_eps:dashboard', raise_exception=False)
 def search_view(request):
     return render(request, 'formatos_eps/search.html')
 
 @login_required(login_url='formatos_eps:login')
+@permission_required('formatos_eps.ver_eps', login_url='formatos_eps:dashboard', raise_exception=False)
 def search_results_view(request):
     cedula = request.GET.get('cedula')
     results = None
@@ -82,6 +84,7 @@ def logout_view(request):
     return redirect('formatos_eps:login')
 
 @login_required(login_url='formatos_eps:login')
+@permission_required('formatos_eps.ver_eps', login_url='formatos_eps:dashboard', raise_exception=False)
 def generar_pdf_view(request, cedula):
     """
     Vista para generar y descargar el PDF del formulario EPS con los datos del empleado.
