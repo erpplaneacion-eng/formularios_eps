@@ -10,4 +10,6 @@ urlpatterns = [
     path('search/', views.search_view, name='search'),
     path('search/results/', views.search_results_view, name='search_results'),
     path('generar-pdf/<str:cedula>/', views.generar_pdf_view, name='generar_pdf'),
+    path('generar-pdf-masivo/', views.generar_pdf_masivo_view, name='generar_pdf_masivo'),
+    path('generar-pdf-masivo-filtro/', views.generar_pdf_masivo_filtro_view, name='generar_pdf_masivo_filtro'),
 ]

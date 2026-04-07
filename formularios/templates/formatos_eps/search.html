@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'formatos_eps/css/style.css' %}">
 </head>
 <body class="app-page">
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-content">
             <a href="{% url 'formatos_eps:dashboard' %}" class="navbar-brand" style="text-decoration: none;">
@@ -35,7 +34,6 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         {% if messages %}
             {% for message in messages %}
@@ -83,12 +81,80 @@
             </form>
         </div>
 
+        <details class="card">
+            <summary class="card-header" style="cursor: pointer; list-style: none;">
+                <h2 class="card-title">Generación Masiva por Cédulas</h2>
+                <p class="card-subtitle">Pega varias cédulas (separadas por comas, espacios o saltos de línea) y descarga un ZIP.</p>
+            </summary>
+
+            <form action="{% url 'formatos_eps:generar_pdf_masivo' %}" method="post" class="search-form" style="margin-top: 1rem;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="cedulas">Listado de Cédulas</label>
+                    <textarea
+                        id="cedulas"
+                        name="cedulas"
+                        class="form-input"
+                        rows="6"
+                        placeholder="Ejemplo:&#10;1234567890&#10;1098765432, 111222333"
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Generar ZIP de PDFs
+                </button>
+            </form>
+        </details>
+
+        <details class="card">
+            <summary class="card-header" style="cursor: pointer; list-style: none;">
+                <h2 class="card-title">Generación Masiva por Filtros</h2>
+                <p class="card-subtitle">Por ahora solo se muestra el filtro de EPS.</p>
+            </summary>
+
+            <form action="{% url 'formatos_eps:generar_pdf_masivo_filtro' %}" method="post" class="search-form" style="margin-top: 1rem;">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="eps">EPS</label>
+                    <select id="eps" name="eps" class="form-input">
+                        <option value="">Todas</option>
+                        {% for eps in eps_disponibles %}
+                            <option value="{{ eps }}">{{ eps }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="origen_hoja">Origen</label>
+                    <select id="origen_hoja" name="origen_hoja" class="form-input">
+                        <option value="">Todos</option>
+                        <option value="Planta">Planta</option>
+                        <option value="Manipuladoras">Manipuladoras</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="programa">Programa (contiene)</label>
+                    <input id="programa" name="programa" type="text" class="form-input" placeholder="Ej: PAE">
+                </div>
+
+                <input type="hidden" name="solo_eps_configurada" value="on">
+
+                <button type="submit" class="btn-primary">
+                    Generar ZIP por Filtros
+                </button>
+            </form>
+        </details>
+
         <div class="card">
             <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);">Instrucciones</h3>
             <ul style="color: var(--text-secondary); line-height: 1.8;">
                 <li>Ingrese el número de cédula sin puntos ni espacios</li>
-                <li>El sistema buscará en las bases de datos de Planta y Manipuladoras</li>
-                <li>Los resultados se mostrarán con la información completa del empleado</li>
+                <li>El sistema busca en las hojas Planta y Manipuladoras</li>
+                <li>En generación masiva se descarga un ZIP con los PDFs y un resumen</li>
+                <li>Si selecciona solo activos, se evaluan columnas FECHA RETIRO / ESTADO / ACTIVO</li>
             </ul>
         </div>
     </main>
