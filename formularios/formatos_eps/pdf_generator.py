@@ -398,69 +398,70 @@ CONFIGURACION_FORMATOS = {
         'archivo': 'Formulario_de_Afiliacion_ASMET SALUD.pdf',
         'campos': {
             # Sección II: Datos básicos de identificación (page 0)
-            'PRIMER_APELLIDO': {'x': 75, 'y': 165},
-            'SEGUNDO_APELLIDO': {'x': 215, 'y': 165},
-            'PRIMER_NOMBRE': {'x': 355, 'y': 165},
-            'SEGUNDO_NOMBRE': {'x': 473, 'y': 165},
-            'TIPO_DOCUMENTO_CC': {'x': 78, 'y': 181, 'fontsize': 9},  # CC constante
-            'CEDULA': {'x': 185, 'y': 181},
-            'PAIS_NACIMIENTO': {'x': 195, 'y': 200, 'fontsize': 8},
-            'DEPARTAMENTO_NACIMIENTO': {'x': 308, 'y': 200, 'fontsize': 6},
-            'CIUDAD_NACIMIENTO': {'x': 405, 'y': 200, 'fontsize': 8},
+            'PRIMER_APELLIDO': {'x': 75, 'y': 200},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 200},
+            'PRIMER_NOMBRE': {'x': 355, 'y': 200},
+            'SEGUNDO_NOMBRE': {'x': 473, 'y': 200},
+            'TIPO_DOCUMENTO_CC': {'x': 78, 'y': 218, 'fontsize': 9},  # CC constante
+            'CEDULA': {'x': 195, 'y': 218},
+            'PAIS_NACIMIENTO': {'x': 235, 'y': 234, 'fontsize': 6},
+            'PAIS_NACIMIENTO_2': {'x': 78, 'y': 234, 'fontsize': 6},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 335, 'y': 234, 'fontsize': 5},
+            'CIUDAD_NACIMIENTO': {'x': 414, 'y': 234, 'fontsize': 5},
             # Sección III: Datos complementarios (page 0)
             'AFP': {'x': 265, 'y': 243, 'fontsize': 8},
             'SALARIO_BASICO': {'x': 395, 'y': 243, 'fontsize': 8},
-            'DIRECCION_RESIDENCIA': {'x': 60, 'y': 268, 'fontsize': 8},
-            'TELEFONO_MOVIL': {'x': 375, 'y': 268, 'fontsize': 8},
-            'CORREO_ELECTRONICO': {'x': 455, 'y': 268, 'fontsize': 7},
-            'DEPARTAMENTO_NACIMIENTO2': {'x': 60, 'y': 289, 'fontsize': 8},
-            'CIUDAD_RESIDENCIA': {'x': 185, 'y': 289, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 80, 'y': 325, 'fontsize': 8},
+            'TELEFONO_MOVIL': {'x': 375, 'y': 325, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 455, 'y': 325, 'fontsize': 7},
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 80, 'y': 345, 'fontsize': 8},
+            'CIUDAD_RESIDENCIA': {'x': 199, 'y': 345, 'fontsize': 8},
             # Página 3 (page 2) - Carta de Deberes y Derechos - Datos del usuario
-            'NOMBRE_COMPLETO_PAG3': {'x': 157, 'y': 488, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
-            'CEDULA_PAGINA_3': {'x': 178, 'y': 505, 'fontsize': 10, 'page': 2},        # TODO: Ajustar
+            'NOMBRE_COMPLETO_PAG3': {'x': 209, 'y': 358, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
+            'CEDULA_PAGINA_3': {'x': 228, 'y': 368, 'fontsize': 10, 'page': 2},        # TODO: Ajustar
             'TIPO_DOCUMENTO_PAG3': {'x': 348, 'y': 505, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - "CC"
-            'CIUDAD_RESIDENCIA_3': {'x': 103, 'y': 521, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - Municipio
-            'DIRECCION_RESIDENCIA_PAG3': {'x': 103, 'y': 537, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
-            'TELEFONO_MOVIL_PAG3': {'x': 103, 'y': 553, 'fontsize': 10, 'page': 2},    # TODO: Ajustar
+            'CIUDAD_RESIDENCIA_3': {'x': 163, 'y': 380, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - Municipio
+            'DIRECCION_RESIDENCIA_PAG3': {'x': 163, 'y': 391, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
+            'TELEFONO_MOVIL_PAG3': {'x': 163, 'y': 403, 'fontsize': 10, 'page': 2},    # TODO: Ajustar
         },
         'fecha_nacimiento': [
-            {'x': 513, 'y': 200}, {'x': 519, 'y': 200},  # D
-            {'x': 527, 'y': 200}, {'x': 533, 'y': 200},  # M
-            {'x': 541, 'y': 200}, {'x': 547, 'y': 200}, {'x': 555, 'y': 200}, {'x': 561, 'y': 200},  # Y
+            {'x': 472, 'y': 234}, {'x': 478, 'y': 234},  # D
+            {'x': 507, 'y': 234}, {'x': 513, 'y': 234},  # M
+            {'x': 541, 'y': 234}, {'x': 547, 'y': 234}, {'x': 555, 'y': 234}, {'x': 561, 'y': 234},  # Y
         ],
         'sexo': {
-            '0': {'x': 376, 'y': 180, 'fontsize': 4},  # Masculino
-            '1': {'x': 337, 'y': 180, 'fontsize': 4},  # Femenino
+            '0': {'x': 430, 'y': 216, 'fontsize': 4},  # Masculino
+            '1': {'x': 373, 'y': 216, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
-            '0': {'x': 462, 'y': 180, 'fontsize': 4},  # Masculino
-            '1': {'x': 426, 'y': 180, 'fontsize': 4},  # Femenino
+            '0': {'x': 592, 'y': 209, 'fontsize': 4},  # Masculino
+            '1': {'x': 581, 'y': 209, 'fontsize': 4},  # Femenino
         },
         'datos_tramite': [
-            {'x': 94, 'y': 115},   # A. Afiliación (Tipo de trámite)
-            {'x': 268, 'y': 111},  # A. Individual (Tipo de afiliación)
-            {'x': 378, 'y': 111},  # Cotizante o Cabeza de Familia
-            {'x': 471, 'y': 115},  # A. Contributivo (Régimen)
-            {'x': 116, 'y': 133},  # A. Cotizante (Tipo de afiliado)
-            {'x': 288, 'y': 133},  # A. Dependiente (Tipo de cotizante)
+            {'x': 218, 'y': 135},   # A. Afiliación (Tipo de trámite)
+            {'x': 472, 'y': 119},  # A. Individual (Tipo de afiliación)
+            {'x': 181, 'y': 147},  #  (Tipo de afiliado)
+            {'x': 537, 'y': 127},  #  Contributivo (Régimen)
+            {'x': 369, 'y': 156},  #  tipo de Cotizante 
+            {'x': 590, 'y': 137},  #  Contribucion solidaria
         ],
         'administradora_anterior': {
             'valor': 'SURA',
-            'x': 60, 'y': 243
+            'x': 68, 'y': 310
         },
         'datos_empleador': {
-            'campo_variable': {'x': 60, 'y': 762},
-            'nit': {'valor': 'NIT', 'x': 288, 'y': 762},
-            'numero_documento': {'valor': '123456789-55', 'x': 327, 'y': 762},
-            'direccion': {'valor': 'calle 15 #26-101', 'x': 60, 'y': 779},
-            'telefono': {'valor': '3164219523', 'x': 260, 'y': 779},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 335, 'y': 777, 'fontsize': 6},
-            'ciudad': {'valor': 'YUMBO', 'x': 548, 'y': 779},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 490, 'y': 779, 'fontsize': 7},
+            'campo_variable': {'x': 67, 'y': 934},
+            'nit': {'valor': 'NIT', 'x': 273, 'y': 934},
+            'numero_documento': {'valor': '123456789-55', 'x': 327, 'y': 934},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 956},
+            'telefono': {'valor': '3164219523', 'x': 210, 'y': 953},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 285, 'y': 953, 'fontsize': 6},
+            'ciudad': {'valor': 'YUMBO', 'x': 548, 'y': 953},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 420, 'y': 953, 'fontsize': 7},
         },
     },
     'NUEVA EPS': None,
-    'ASOCIACION MUTUAL SER EMPRESA SOLIDARIA DE SALUD EPS-S': None,
+    'ASOCIACION MUTUAL SER EMP7RESA SOLIDARIA DE SALUD EPS-S': None,
     'FAMISANAR': None,
     'COOSALUD': {
         'archivo': 'Formulario_de_Afiliacion_y_Registro_de_Novedades_eps_coosalud.pdf',
