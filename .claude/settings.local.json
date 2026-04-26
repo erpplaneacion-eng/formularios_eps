@@ -14,7 +14,9 @@
       "Bash(export CSRF_TRUSTED_ORIGINS=\"https://web-production-d3de.up.railway.app\")",
       "Bash(export ALLOWED_HOSTS=\"web-production-d3de.up.railway.app\")",
       "Bash(../formulario/Scripts/python.exe manage.py migrate:*)",
-      "Bash(formulario/Scripts/python.exe formularios/manage.py shell --skip-checks)"
+      "Bash(formulario/Scripts/python.exe formularios/manage.py shell --skip-checks)",
+      "Bash(python -c \"import sys; sys.path.insert\\(0, 'formularios'\\); import django; import os; os.environ.setdefault\\('DJANGO_SETTINGS_MODULE', 'formularios.settings'\\); django.setup\\(\\); from formatos_eps.pdf_generator import CONFIGURACION_FORMATOS; cfg = CONFIGURACION_FORMATOS.get\\('ASMET SALUD'\\); print\\('OK - ASMET SALUD configurado:', cfg is not None\\); print\\('Campos:', list\\(cfg['campos'].keys\\(\\)\\)\\)\")",
+      "Bash(python -c ' *)"
     ],
     "deny": [],
     "ask": []

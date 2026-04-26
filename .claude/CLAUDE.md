@@ -185,17 +185,42 @@ Motor de generación de PDFs usando PyMuPDF (fitz). Arquitectura basada en confi
 
 #### 3. Views (`views.py`)
 
-- `login_view`: Autenticación con Django Auth
-- `search_view`: Formulario de búsqueda por cédula
-- `search_results_view`: Muestra datos del empleado encontrado
-- `generar_pdf_view`: Genera y descarga PDF del formulario
-- `logout_view`: Cierre de sesión
+Todas las vistas excepto login/logout requieren el permiso `formatos_eps.ver_eps`.
 
-**Normalización de datos**: Los datos de Google Sheets se normalizan reemplazando espacios por guiones bajos en las claves (ej: `'PRIMER APELLIDO'` → `'PRIMER_APELLIDO'`).
+- `login_view` / `logout_view`: Autenticación Django Auth
+- `dashboard_view`: Panel con accesos por módulo
+- `search_view`: Formulario de búsqueda por cédula (muestra solo EPS con plantilla PDF presente en `formatos/`)
+- `search_results_view`: Muestra datos del empleado encontrado
+- `generar_pdf_view`: Genera y descarga PDF individual (FileResponse)
+- `generar_pdf_masivo_view`: Recibe lista de cédulas (POST), genera ZIP con PDFs + `errores.txt`
+- `generar_pdf_masivo_filtro_view`: Genera ZIP con PDFs filtrando toda la BD (EPS, empresa, área, fecha ingreso, solo activos, etc.)
+
+**Funciones privadas de apoyo** (prefijo `_`):
+- `_normalizar_resultado_busqueda(result_data)`: Mapeo de columnas Sheets → diccionario para la vista de resultados
+- `_normalizar_datos_para_pdf(datos_empleado)`: Mapeo más completo para la generación PDF (incluye AFP, salario, dirección, etc.)
+- `_parsear_cedulas(raw_value)`: Extrae cédulas numéricas de texto libre (separadas por cualquier carácter no numérico)
+- `_es_activo(row)`: Regla flexible de estado activo — verifica `FECHA RETIRO`, luego `ESTADO`, luego `ACTIVO`
+- `_obtener_registros_unificados()`: Combina Planta + Manipuladoras desduplicando por cédula más reciente
+- `_filtrar_registros(rows, filtros)`: Aplica filtros sobre registros combinados
 
 **Campo especial `_origen_hoja`**: Indica si el empleado viene de "Planta" o "Manipuladoras". Se usa en `pdf_generator.py` para determinar qué campo usar en `datos_empleador.campo_variable`:
 - Planta → `EMPRESA`
 - Manipuladoras → `PROGRAMA AL QUE PERTENECE`
+
+**Mappings de columnas Google Sheets con nombres no obvios**:
+- `CORREO_ELECTRONICO` ← columna `CORREOS`
+- `TELEFONO_MOVIL` ← columna `NUMERO TELEFONICO ` (con espacio al final — usar `.strip()`)
+- `CIUDAD_RESIDENCIA` ← columna `CIUDAD` con fallback a `MUNICIPIO`
+- `FECHA_INGRESO` ← columna `FECHA DE INGRESO (AAAAMMDD)`
+
+#### 4. Permisos y Grupos (`models.py`)
+
+`AccesoModulos` es un modelo virtual (sin tabla) que define permisos personalizados:
+- `ver_eps`: Acceso al módulo de formularios EPS
+- `ver_certificados`: Acceso a certificados laborales
+- `ver_incapacidades`: Acceso a incapacidades
+
+Los grupos de usuarios se administran desde el admin de Django y se asocian a estos permisos. El dashboard muestra/oculta módulos según los permisos del usuario.
 
 ### Configuración de Entorno
 
@@ -255,10 +280,11 @@ NITS_EMPRESAS = {
 
 ### Agregar Nuevos Campos de Google Sheets
 
-1. **Modificar normalización en `views.py`** (funciones `search_results_view` y `generar_pdf_view`):
+1. **Agregar a `_normalizar_datos_para_pdf()` en `views.py`** (función que abastece la generación PDF):
    ```python
    'NUEVO_CAMPO': datos_empleado.get('NOMBRE EN SHEET', ''),
    ```
+   Si también debe mostrarse en la vista de resultados, agregar a `_normalizar_resultado_busqueda()`.
 
 2. **Agregar a configuración de EPS** en `pdf_generator.py`:
    ```python
@@ -267,7 +293,7 @@ NITS_EMPRESAS = {
    }
    ```
 
-3. **Mapear en campos_simples** dentro de `rellenar_pdf_empleado()`:
+3. **Mapear en `campos_simples`** dentro de `rellenar_pdf_empleado()`:
    ```python
    campos_simples = {
        'NUEVO_CAMPO': datos_empleado.get('NUEVO_CAMPO', ''),

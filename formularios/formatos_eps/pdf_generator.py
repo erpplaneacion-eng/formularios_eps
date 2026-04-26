@@ -394,7 +394,71 @@ CONFIGURACION_FORMATOS = {
             'tipo_documento': {'valor': 'CC', 'x': 175, 'y': 275, 'fontsize': 6},
         }
     },
-    'ASMET SALUD': None,
+    'ASMET SALUD': {
+        'archivo': 'Formulario_de_Afiliacion_ASMET SALUD.pdf',
+        'campos': {
+            # Sección II: Datos básicos de identificación (page 0)
+            'PRIMER_APELLIDO': {'x': 75, 'y': 165},
+            'SEGUNDO_APELLIDO': {'x': 215, 'y': 165},
+            'PRIMER_NOMBRE': {'x': 355, 'y': 165},
+            'SEGUNDO_NOMBRE': {'x': 473, 'y': 165},
+            'TIPO_DOCUMENTO_CC': {'x': 78, 'y': 181, 'fontsize': 9},  # CC constante
+            'CEDULA': {'x': 185, 'y': 181},
+            'PAIS_NACIMIENTO': {'x': 195, 'y': 200, 'fontsize': 8},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 308, 'y': 200, 'fontsize': 6},
+            'CIUDAD_NACIMIENTO': {'x': 405, 'y': 200, 'fontsize': 8},
+            # Sección III: Datos complementarios (page 0)
+            'AFP': {'x': 265, 'y': 243, 'fontsize': 8},
+            'SALARIO_BASICO': {'x': 395, 'y': 243, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 60, 'y': 268, 'fontsize': 8},
+            'TELEFONO_MOVIL': {'x': 375, 'y': 268, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 455, 'y': 268, 'fontsize': 7},
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 60, 'y': 289, 'fontsize': 8},
+            'CIUDAD_RESIDENCIA': {'x': 185, 'y': 289, 'fontsize': 8},
+            # Página 3 (page 2) - Carta de Deberes y Derechos - Datos del usuario
+            'NOMBRE_COMPLETO_PAG3': {'x': 157, 'y': 488, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
+            'CEDULA_PAGINA_3': {'x': 178, 'y': 505, 'fontsize': 10, 'page': 2},        # TODO: Ajustar
+            'TIPO_DOCUMENTO_PAG3': {'x': 348, 'y': 505, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - "CC"
+            'CIUDAD_RESIDENCIA_3': {'x': 103, 'y': 521, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - Municipio
+            'DIRECCION_RESIDENCIA_PAG3': {'x': 103, 'y': 537, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
+            'TELEFONO_MOVIL_PAG3': {'x': 103, 'y': 553, 'fontsize': 10, 'page': 2},    # TODO: Ajustar
+        },
+        'fecha_nacimiento': [
+            {'x': 513, 'y': 200}, {'x': 519, 'y': 200},  # D
+            {'x': 527, 'y': 200}, {'x': 533, 'y': 200},  # M
+            {'x': 541, 'y': 200}, {'x': 547, 'y': 200}, {'x': 555, 'y': 200}, {'x': 561, 'y': 200},  # Y
+        ],
+        'sexo': {
+            '0': {'x': 376, 'y': 180, 'fontsize': 4},  # Masculino
+            '1': {'x': 337, 'y': 180, 'fontsize': 4},  # Femenino
+        },
+        'sexo_identificacion': {
+            '0': {'x': 462, 'y': 180, 'fontsize': 4},  # Masculino
+            '1': {'x': 426, 'y': 180, 'fontsize': 4},  # Femenino
+        },
+        'datos_tramite': [
+            {'x': 94, 'y': 115},   # A. Afiliación (Tipo de trámite)
+            {'x': 268, 'y': 111},  # A. Individual (Tipo de afiliación)
+            {'x': 378, 'y': 111},  # Cotizante o Cabeza de Familia
+            {'x': 471, 'y': 115},  # A. Contributivo (Régimen)
+            {'x': 116, 'y': 133},  # A. Cotizante (Tipo de afiliado)
+            {'x': 288, 'y': 133},  # A. Dependiente (Tipo de cotizante)
+        ],
+        'administradora_anterior': {
+            'valor': 'SURA',
+            'x': 60, 'y': 243
+        },
+        'datos_empleador': {
+            'campo_variable': {'x': 60, 'y': 762},
+            'nit': {'valor': 'NIT', 'x': 288, 'y': 762},
+            'numero_documento': {'valor': '123456789-55', 'x': 327, 'y': 762},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 60, 'y': 779},
+            'telefono': {'valor': '3164219523', 'x': 260, 'y': 779},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 335, 'y': 777, 'fontsize': 6},
+            'ciudad': {'valor': 'YUMBO', 'x': 548, 'y': 779},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 490, 'y': 779, 'fontsize': 7},
+        },
+    },
     'NUEVA EPS': None,
     'ASOCIACION MUTUAL SER EMPRESA SOLIDARIA DE SALUD EPS-S': None,
     'FAMISANAR': None,
@@ -708,6 +772,11 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'BARRIO': datos_empleado.get('BARRIO', ''),
             'CIUDAD_RESIDENCIA': datos_empleado.get('CIUDAD_RESIDENCIA', ''),
             'CIUDAD_RESIDENCIA_3': datos_empleado.get('CIUDAD_RESIDENCIA', ''),
+            # Alias para campos de página 3 (Carta de Deberes - ASMET SALUD)
+            'NOMBRE_COMPLETO_PAG3': f"{primer_apellido} {segundo_apellido} {primer_nombre} {segundo_nombre}".strip(),
+            'TIPO_DOCUMENTO_PAG3': 'CC',
+            'DIRECCION_RESIDENCIA_PAG3': datos_empleado.get('DIRECCION_RESIDENCIA', ''),
+            'TELEFONO_MOVIL_PAG3': datos_empleado.get('TELEFONO_MOVIL', ''),
         }
 
         for clave_campo, valor in campos_simples.items():
