@@ -409,8 +409,8 @@ CONFIGURACION_FORMATOS = {
             'DEPARTAMENTO_NACIMIENTO': {'x': 335, 'y': 234, 'fontsize': 5},
             'CIUDAD_NACIMIENTO': {'x': 414, 'y': 234, 'fontsize': 5},
             # Sección III: Datos complementarios (page 0)
-            'AFP': {'x': 265, 'y': 243, 'fontsize': 8},
-            'SALARIO_BASICO': {'x': 395, 'y': 243, 'fontsize': 8},
+            'AFP': {'x': 265, 'y': 310, 'fontsize': 8},
+            'SALARIO_BASICO': {'x': 395, 'y': 310, 'fontsize': 8},
             'DIRECCION_RESIDENCIA': {'x': 80, 'y': 325, 'fontsize': 8},
             'TELEFONO_MOVIL': {'x': 375, 'y': 325, 'fontsize': 8},
             'CORREO_ELECTRONICO': {'x': 455, 'y': 325, 'fontsize': 7},
@@ -440,11 +440,11 @@ CONFIGURACION_FORMATOS = {
         ],
         'sexo': {
             '0': {'x': 430, 'y': 216, 'fontsize': 4},  # Masculino
-            '1': {'x': 373, 'y': 216, 'fontsize': 4},  # Femenino
+            '1': {'x': 370, 'y': 216, 'fontsize': 4},  # Femenino
         },
         'sexo_identificacion': {
             '0': {'x': 592, 'y': 209, 'fontsize': 4},  # Masculino
-            '1': {'x': 581, 'y': 209, 'fontsize': 4},  # Femenino
+            '1': {'x': 557, 'y': 209, 'fontsize': 4},  # Femenino
         },
         'datos_tramite': [
             {'x': 218, 'y': 135},   # A. Afiliación (Tipo de trámite)
