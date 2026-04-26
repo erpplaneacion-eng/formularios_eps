@@ -419,7 +419,6 @@ CONFIGURACION_FORMATOS = {
             # Página 3 (page 2) - Carta de Deberes y Derechos - Datos del usuario
             'NOMBRE_COMPLETO_PAG3': {'x': 209, 'y': 358, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
             'CEDULA_PAGINA_3': {'x': 228, 'y': 368, 'fontsize': 10, 'page': 2},        # TODO: Ajustar
-            'TIPO_DOCUMENTO_PAG3': {'x': 348, 'y': 505, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - "CC"
             'CIUDAD_RESIDENCIA_3': {'x': 163, 'y': 380, 'fontsize': 10, 'page': 2},    # TODO: Ajustar - Municipio
             'DIRECCION_RESIDENCIA_PAG3': {'x': 163, 'y': 391, 'fontsize': 10, 'page': 2},  # TODO: Ajustar
             'TELEFONO_MOVIL_PAG3': {'x': 163, 'y': 403, 'fontsize': 10, 'page': 2},    # TODO: Ajustar
@@ -428,6 +427,16 @@ CONFIGURACION_FORMATOS = {
             {'x': 472, 'y': 234}, {'x': 478, 'y': 234},  # D
             {'x': 507, 'y': 234}, {'x': 513, 'y': 234},  # M
             {'x': 541, 'y': 234}, {'x': 547, 'y': 234}, {'x': 555, 'y': 234}, {'x': 561, 'y': 234},  # Y
+        ],
+        'fecha_nacimiento2': [  # Fecha ingreso en página 2 (Reporte de Novedades) - TODO: Ajustar coordenadas
+            {'x': 195, 'y': 290, 'page': 1}, {'x': 200, 'y': 290, 'page': 1},  # D
+            {'x': 220, 'y': 290, 'page': 1}, {'x': 225, 'y': 290, 'page': 1},  # M
+            {'x': 257, 'y': 290, 'page': 1}, {'x': 262, 'y': 290, 'page': 1}, {'x': 267, 'y': 290, 'page': 1}, {'x': 272, 'y': 290, 'page': 1},  # Y
+        ],
+        'fecha_nacimiento3': [  # Fecha ingreso en página 3 (Carta de Deberes) - TODO: Ajustar coordenadas
+            {'x': 235, 'y': 415, 'page': 2}, {'x': 241, 'y': 415, 'page': 2},  # D
+            {'x': 247, 'y': 415, 'page': 2}, {'x': 253, 'y': 415, 'page': 2},  # M
+            {'x': 259, 'y': 415, 'page': 2}, {'x': 265, 'y': 415, 'page': 2}, {'x': 271, 'y': 415, 'page': 2}, {'x': 277, 'y': 415, 'page': 2},  # Y
         ],
         'sexo': {
             '0': {'x': 430, 'y': 216, 'fontsize': 4},  # Masculino
@@ -444,6 +453,7 @@ CONFIGURACION_FORMATOS = {
             {'x': 537, 'y': 127},  #  Contributivo (Régimen)
             {'x': 369, 'y': 156},  #  tipo de Cotizante 
             {'x': 590, 'y': 137},  #  Contribucion solidaria
+            {'x': 373, 'y': 367, 'page': 2},  # X fija "CC" en Carta de Deberes (page 3)
         ],
         'administradora_anterior': {
             'valor': 'SURA',
@@ -835,10 +845,24 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
                  if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
                     for i, digito in enumerate(fecha_ddmmyyyy):
                         coords = mapa_fecha2[i]
-                        page_idx = coords.get('page', 0) # Aquí debe venir 'page': 1
+                        page_idx = coords.get('page', 0)
                         page = get_page(page_idx)
                         if page:
                              insertar_texto_en_pdf(page, digito, coords['x'], coords['y'], fontsize=10)
+
+        # Insertar FECHA DE NACIMIENTO 3 (si existe) - segunda aparición de fecha ingreso
+        mapa_fecha3 = config.get('fecha_nacimiento3', [])
+        if mapa_fecha3:
+            if len(mapa_fecha3) >= 8:
+                fecha_ingreso = datos_empleado.get('FECHA_INGRESO', '')
+                fecha_ddmmyyyy = convertir_fecha_yyyymmdd_a_ddmmyyyy(fecha_ingreso)
+                if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
+                    for i, digito in enumerate(fecha_ddmmyyyy):
+                        coords = mapa_fecha3[i]
+                        page_idx = coords.get('page', 0)
+                        page = get_page(page_idx)
+                        if page:
+                            insertar_texto_en_pdf(page, digito, coords['x'], coords['y'], fontsize=10)
 
         # Marcar SEXO
         if codigo_sexo and str(codigo_sexo) in mapa_sexo:
