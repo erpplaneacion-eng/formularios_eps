@@ -434,11 +434,7 @@ CONFIGURACION_FORMATOS = {
             {'x': 220, 'y': 290, 'page': 1}, {'x': 225, 'y': 290, 'page': 1},  # M
             {'x': 257, 'y': 290, 'page': 1}, {'x': 262, 'y': 290, 'page': 1}, {'x': 267, 'y': 290, 'page': 1}, {'x': 272, 'y': 290, 'page': 1},  # Y
         ],
-        'fecha_nacimiento3': [  # Fecha ingreso en página 3 (Carta de Deberes) - TODO: Ajustar coordenadas
-            {'x': 235, 'y': 415, 'page': 2}, {'x': 241, 'y': 415, 'page': 2},  # D
-            {'x': 247, 'y': 415, 'page': 2}, {'x': 253, 'y': 415, 'page': 2},  # M
-            {'x': 259, 'y': 415, 'page': 2}, {'x': 265, 'y': 415, 'page': 2}, {'x': 271, 'y': 415, 'page': 2}, {'x': 277, 'y': 415, 'page': 2},  # Y
-        ],
+        'fecha_nacimiento3': {'x': 235, 'y': 415, 'page': 2},  # Fecha ingreso en página 3 como dd/mm/yyyy
         'sexo': {
             '0': {'x': 430, 'y': 216, 'fontsize': 4},  # Masculino
             '1': {'x': 370, 'y': 216, 'fontsize': 4},  # Femenino
@@ -854,10 +850,18 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         # Insertar FECHA DE NACIMIENTO 3 (si existe) - segunda aparición de fecha ingreso
         mapa_fecha3 = config.get('fecha_nacimiento3', [])
         if mapa_fecha3:
-            if len(mapa_fecha3) >= 8:
-                fecha_ingreso = datos_empleado.get('FECHA_INGRESO', '')
-                fecha_ddmmyyyy = convertir_fecha_yyyymmdd_a_ddmmyyyy(fecha_ingreso)
-                if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
+            fecha_ingreso = datos_empleado.get('FECHA_INGRESO', '')
+            fecha_ddmmyyyy = convertir_fecha_yyyymmdd_a_ddmmyyyy(fecha_ingreso)
+            if fecha_ddmmyyyy and len(fecha_ddmmyyyy) == 8:
+                if isinstance(mapa_fecha3, dict):
+                    # Insertar fecha completa como dd/mm/yyyy en una sola posición
+                    fecha_formateada = f"{fecha_ddmmyyyy[0:2]}/{fecha_ddmmyyyy[2:4]}/{fecha_ddmmyyyy[4:8]}"
+                    page_idx = mapa_fecha3.get('page', 0)
+                    page = get_page(page_idx)
+                    if page:
+                        insertar_texto_en_pdf(page, fecha_formateada, mapa_fecha3['x'], mapa_fecha3['y'], fontsize=10)
+                elif isinstance(mapa_fecha3, list) and len(mapa_fecha3) >= 8:
+                    # Insertar dígito por dígito en coordenadas separadas
                     for i, digito in enumerate(fecha_ddmmyyyy):
                         coords = mapa_fecha3[i]
                         page_idx = coords.get('page', 0)
