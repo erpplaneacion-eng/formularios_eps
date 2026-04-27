@@ -410,6 +410,7 @@ CONFIGURACION_FORMATOS = {
             'CIUDAD_NACIMIENTO': {'x': 414, 'y': 234, 'fontsize': 5},
             # Sección III: Datos complementarios (page 0)
             'AFP': {'x': 265, 'y': 310, 'fontsize': 8},
+            'BARRIO': {'x': 370, 'y': 345, 'fontsize': 6}, 
             'SALARIO_BASICO': {'x': 395, 'y': 310, 'fontsize': 8},
             'DIRECCION_RESIDENCIA': {'x': 80, 'y': 325, 'fontsize': 8},
             'TELEFONO_MOVIL': {'x': 375, 'y': 325, 'fontsize': 8},
@@ -460,7 +461,7 @@ CONFIGURACION_FORMATOS = {
             'x': 68, 'y': 310
         },
         'datos_empleador': {
-            'campo_variable': {'x': 67, 'y': 934},
+            'campo_variable': {'x': 67, 'y': 934, 'fontsize': 5},
             'nit': {'valor': 'NIT', 'x': 273, 'y': 934},
             'numero_documento': {'valor': '123456789-55', 'x': 327, 'y': 934},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 956},
