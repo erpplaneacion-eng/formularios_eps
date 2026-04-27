@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 import logging
 import os
 import json
+import time
 
 # Google Sheets API setup
 SCOPE = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -10,6 +11,10 @@ SPREADSHEET_ID = '1KAtsyGy1-vyPFrdux3WWeGagL8F4zHCRMZqBKew0WYw'
 
 # Lazy loading del client para evitar errores al importar
 _client = None
+
+# Caché en memoria para evitar exceder el límite de la API (60 lecturas/minuto)
+_sheet_cache: dict = {}
+_CACHE_TTL = 300  # segundos — 5 minutos
 
 logger = logging.getLogger(__name__)
 
@@ -70,6 +75,14 @@ def get_client():
     return _client
 
 def get_sheet_data(sheet_name):
+    now = time.time()
+    cached = _sheet_cache.get(sheet_name)
+    if cached is not None:
+        data, ts = cached
+        if now - ts < _CACHE_TTL:
+            logger.debug(f"Caché hit para hoja '{sheet_name}'")
+            return data
+
     try:
         client = get_client()
         sheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
@@ -78,6 +91,7 @@ def get_sheet_data(sheet_name):
         all_values = sheet.get_all_values()
 
         if not all_values:
+            _sheet_cache[sheet_name] = ([], now)
             return []
 
         # Primera fila son los encabezados
@@ -102,6 +116,7 @@ def get_sheet_data(sheet_name):
             record = dict(zip(unique_headers, row_data))
             records.append(record)
 
+        _sheet_cache[sheet_name] = (records, now)
         return records
     except Exception as e:
         logger.error(f"Error al obtener datos de la hoja '{sheet_name}': {str(e)}")

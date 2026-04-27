@@ -139,8 +139,11 @@ Motor de generación de PDFs usando PyMuPDF (fitz). Arquitectura basada en confi
         'fecha_nacimiento': [               # Coordenadas para 8 dígitos DDMMYYYY
             {'x': 290, 'y': 200}, ...
         ],
-        'fecha_nacimiento2': [              # Segunda fecha (ej: fecha ingreso)
+        'fecha_nacimiento2': [              # Segunda fecha (FECHA_INGRESO) en otra página
             {'x': 487, 'y': 728, 'page': 1}, ...
+        ],
+        'fecha_nacimiento3': [              # Tercera fecha (FECHA_INGRESO) en una página adicional
+            {'x': 178, 'y': 415, 'page': 2}, ...  # Solo ASMET SALUD por ahora
         ],
         'sexo': {                           # Marcas X según código
             '0': {'x': 302.5, 'y': 176.5},  # Masculino
@@ -180,6 +183,7 @@ Motor de generación de PDFs usando PyMuPDF (fitz). Arquitectura basada en confi
 - EMSSANAR ✅ (incluye anexo "Carta_Derechos_Deberes_EPS_EMSSANAR.pdf")
 - SALUD TOTAL ✅
 - COOSALUD ✅
+- ASMET SALUD ✅ (3 páginas: formulario principal + Reporte de Novedades + Carta de Deberes y Derechos)
 
 **EPSs sin configurar**: Retornan `None`, generan `ValueError` al intentar generar PDF.
 
@@ -312,9 +316,27 @@ La configuración usa `'page': N` para especificar página (0-indexed):
 
 ### Campos con Formato Especial
 
-- **Fechas**: Se insertan dígito por dígito usando `fecha_nacimiento` y `fecha_nacimiento2`
+- **Fechas**: Se insertan dígito por dígito usando `fecha_nacimiento`, `fecha_nacimiento2` y `fecha_nacimiento3` (las dos últimas usan `FECHA_INGRESO`)
 - **Sexo**: Se marca con X usando coordenadas en `sexo`, `sexo_2`, `sexo_identificacion`
 - **Teléfonos con guión**: Se dividen automáticamente y se insertan en líneas separadas (10 puntos de diferencia en Y)
+
+### Campos alias para páginas adicionales (en `campos_simples`)
+
+Cuando un mismo dato debe aparecer en varias páginas con distintas coordenadas, se usan claves alias ya definidas en `campos_simples` dentro de `rellenar_pdf_empleado`:
+
+| Clave alias | Valor |
+|---|---|
+| `CEDULA_PAGINA_3` | Cédula del empleado |
+| `CEDULA_PAGINA_2_1` / `CEDULA_PAGINA_2_2` | Cédula en página 2 |
+| `PAIS_NACIMIENTO_2` | País de nacimiento (duplicado) |
+| `CIUDAD_NACIMIENTO_2` | Ciudad de nacimiento (duplicado) |
+| `CIUDAD_RESIDENCIA_3` | Ciudad de residencia (duplicado) |
+| `NOMBRE_COMPLETO_PAG3` | Apellidos + nombres en una línea (para ASMET SALUD p.3) |
+| `TIPO_DOCUMENTO_PAG3` | Constante `'CC'` como texto |
+| `DIRECCION_RESIDENCIA_PAG3` | Dirección de residencia (duplicado) |
+| `TELEFONO_MOVIL_PAG3` | Teléfono móvil (duplicado) |
+
+Para agregar una nueva aparición de un campo en otra página, usar una de estas claves con `'page': N` en la configuración de la EPS, o agregar un alias nuevo a `campos_simples` si no existe.
 
 ## Deploy en Railway
 
@@ -361,5 +383,17 @@ No hay tests automatizados actualmente. Los scripts en `test/` son para verifica
 ### Campos Especiales
 
 - `TELEFONO_MOVIL`: Si contiene guión, se divide en dos líneas (excepto SANITAS)
-- `FECHA_INGRESO`: Se usa para `fecha_nacimiento2` en algunos formatos
+- `FECHA_INGRESO`: Se usa para `fecha_nacimiento2` y `fecha_nacimiento3`
 - `DEPARTAMENTO_POR_CIUDAD`: Se calcula dinámicamente desde la hoja "Codigo Pais-Dpto-Ciudad"
+
+### Numeración de páginas en el código
+
+Las páginas son **0-indexed** en PyMuPDF. Siempre restar 1 a la página física:
+
+| `'page':` en config | Página física del PDF |
+|---|---|
+| `0` (o sin `page`) | Página 1 |
+| `1` | Página 2 |
+| `2` | Página 3 |
+
+`datos_tramite` también respeta `'page': N`, lo que permite poner X's fijas en cualquier página (útil para marcar casillas tipo "CC" en formularios de varias páginas como ASMET SALUD).
