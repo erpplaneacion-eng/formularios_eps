@@ -1034,16 +1034,13 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         raise Exception(f"Error al generar el PDF para {nombre_eps}: {str(e)}")
 
 
-def generar_nombre_archivo_pdf(cedula):
-    """
-    Genera un nombre de archivo único para el PDF.
-
-    Args:
-        cedula (str): Número de cédula del empleado
-
-    Returns:
-        str: Nombre del archivo (ej: "formulario_1234567890.pdf")
-    """
+def generar_nombre_archivo_pdf(cedula, primer_apellido=''):
+    import unicodedata
+    apellido_limpio = unicodedata.normalize('NFD', str(primer_apellido or ''))
+    apellido_limpio = ''.join(c for c in apellido_limpio if unicodedata.category(c) != 'Mn')
+    apellido_limpio = ''.join(c if c.isalnum() else '_' for c in apellido_limpio).strip('_').upper()
+    if apellido_limpio:
+        return f"formulario_eps_{apellido_limpio}_{cedula}.pdf"
     return f"formulario_eps_{cedula}.pdf"
 
 

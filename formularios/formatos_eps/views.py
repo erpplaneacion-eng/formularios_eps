@@ -295,7 +295,7 @@ def generar_pdf_view(request, cedula):
 
         datos_normalizados = _normalizar_datos_para_pdf(datos_empleado)
 
-        nombre_archivo = generar_nombre_archivo_pdf(cedula)
+        nombre_archivo = generar_nombre_archivo_pdf(cedula, datos_normalizados.get('PRIMER_APELLIDO', ''))
         temp_dir = tempfile.gettempdir()
         output_path = os.path.join(temp_dir, nombre_archivo)
 
@@ -352,7 +352,7 @@ def generar_pdf_masivo_view(request):
                     continue
 
                 datos_normalizados = _normalizar_datos_para_pdf(datos_empleado)
-                nombre_archivo = generar_nombre_archivo_pdf(cedula)
+                nombre_archivo = generar_nombre_archivo_pdf(cedula, datos_normalizados.get('PRIMER_APELLIDO', ''))
                 output_path = os.path.join(temp_dir, f"{uuid.uuid4().hex}_{nombre_archivo}")
                 rellenar_pdf_empleado(datos_normalizados, output_path)
                 zip_file.write(output_path, arcname=nombre_archivo)
@@ -412,7 +412,7 @@ def generar_pdf_masivo_filtro_view(request):
 
             try:
                 datos_normalizados = _normalizar_datos_para_pdf(row)
-                nombre_archivo = generar_nombre_archivo_pdf(cedula)
+                nombre_archivo = generar_nombre_archivo_pdf(cedula, datos_normalizados.get('PRIMER_APELLIDO', ''))
                 output_path = os.path.join(temp_dir, f"{uuid.uuid4().hex}_{nombre_archivo}")
                 rellenar_pdf_empleado(datos_normalizados, output_path)
                 zip_file.write(output_path, arcname=nombre_archivo)
