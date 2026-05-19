@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.http import FileResponse
-from .google_sheets import find_row_by_cedula, buscar_departamento_por_ciudad, get_sheet_data
+from .google_sheets import find_row_by_cedula, buscar_departamento_por_ciudad, get_sheet_data, SPREADSHEET_ID_2
 from .pdf_generator import (
     rellenar_pdf_empleado,
     generar_nombre_archivo_pdf,
@@ -128,10 +128,14 @@ def _es_activo(row):
 
 def _obtener_registros_unificados():
     planta_data = get_sheet_data('Planta')
+    planta_data_2 = get_sheet_data('Planta', SPREADSHEET_ID_2)
     manipuladoras_data = get_sheet_data('Manipuladoras')
 
     rows = []
     for row in planta_data:
+        row['_origen_hoja'] = 'Planta'
+        rows.append(row)
+    for row in planta_data_2:
         row['_origen_hoja'] = 'Planta'
         rows.append(row)
     for row in manipuladoras_data:
