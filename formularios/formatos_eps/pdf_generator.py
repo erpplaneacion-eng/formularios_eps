@@ -18,9 +18,7 @@ NITS_EMPRESAS = {
     "CONSORCIO 2026": "902021552-6",
     "UT ALIMENTANDO YUMBO 2026": "902027434-2",
     "UT BUGA 2026": "902023530-3",
-    "UT ALIMENTANDO YUMBO 2026 II": "9020900105-1",
-     
-      
+    "UT ALIMENTANDO YUMBO 2026 II": "902090105-1",
 }
 
 # Configuración de formatos por EPS
@@ -84,7 +82,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 90, 'y': 588},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 235, 'y': 588},
-            'numero_documento': {'valor': '123456789-55', 'x': 310, 'y': 588},
+            'numero_documento': {'x': 310, 'y': 588},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 85, 'y': 603},
             'telefono': {'valor': '3164219523', 'x': 218, 'y': 603},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 292, 'y': 603, 'fontsize': 8},
@@ -161,7 +159,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 25, 'y': 895, 'fontsize': 7},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 260, 'y': 895},
-            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 895},
+            'numero_documento': {'x': 315, 'y': 895},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 28, 'y': 915},
             'telefono': {'valor': '3164219523', 'x': 113, 'y': 915},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 182, 'y': 915, 'fontsize': 6},
@@ -231,7 +229,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 60, 'y': 130, 'page': 1},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 260, 'y': 130, 'page': 1},
-            'numero_documento': {'valor': '123456789-55', 'x': 345, 'y': 130, 'page': 1},
+            'numero_documento': {'x': 345, 'y': 130, 'page': 1},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 155, 'page': 1},
             'telefono': {'valor': '3164219523', 'x': 519, 'y': 155, 'page': 1},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 80, 'y': 175, 'fontsize': 10, 'page': 1},
@@ -299,7 +297,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 30, 'y': 749},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 288, 'y': 751},
-            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 749},
+            'numero_documento': {'x': 315, 'y': 749},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 90, 'y': 767},
             'telefono': {'valor': '3164219523', 'x': 218, 'y': 767},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 299, 'y': 764, 'fontsize': 4},
@@ -385,7 +383,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 66, 'y': 835},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 309, 'y': 837, 'fontsize': 6},
-            'numero_documento': {'valor': '123456789-55', 'x': 345, 'y': 835},
+            'numero_documento': {'x': 345, 'y': 835},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 66, 'y': 855},
             'telefono': {'valor': '3164219523', 'x': 249, 'y': 855},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 312, 'y': 853, 'fontsize': 6},
@@ -460,7 +458,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 67, 'y': 934, 'fontsize': 5},
             'nit': {'valor': 'NIT', 'x': 273, 'y': 934},
-            'numero_documento': {'valor': '123456789-55', 'x': 327, 'y': 934},
+            'numero_documento': {'x': 327, 'y': 934},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 956},
             'telefono': {'valor': '3164219523', 'x': 210, 'y': 953},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 285, 'y': 953, 'fontsize': 6},
@@ -528,7 +526,7 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 66, 'y': 745},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 277, 'y': 745},
-            'numero_documento': {'valor': '123456789-55', 'x': 315, 'y': 745},
+            'numero_documento': {'x': 315, 'y': 745},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 66, 'y': 765},
             'telefono': {'valor': '3164219523', 'x': 224, 'y': 765},
             'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 294, 'y': 761, 'fontsize': 5},
@@ -946,11 +944,11 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
                     valor = valor_empresa
                 elif key == 'numero_documento':
                     # Asignar NIT dinámicamente según la empresa
-                    empresa_key = valor_empresa.strip()
-                    if empresa_key in NITS_EMPRESAS:
-                        valor = NITS_EMPRESAS[empresa_key]
-                    else:
-                        valor = info.get('valor', '')
+                    # ponytail: sin match se deja en blanco; un NIT ajeno en un
+                    # formulario oficial es peor que un campo vacío
+                    valor = NITS_EMPRESAS.get(valor_empresa.strip().upper(), '')
+                    if not valor:
+                        print(f"ADVERTENCIA: empresa sin NIT configurado: '{valor_empresa}'")
                 elif 'valor' in info:
                     valor = info['valor']
                 

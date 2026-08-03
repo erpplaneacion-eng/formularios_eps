@@ -17,7 +17,8 @@
       "Bash(formulario/Scripts/python.exe formularios/manage.py shell --skip-checks)",
       "Bash(python -c \"import sys; sys.path.insert\\(0, 'formularios'\\); import django; import os; os.environ.setdefault\\('DJANGO_SETTINGS_MODULE', 'formularios.settings'\\); django.setup\\(\\); from formatos_eps.pdf_generator import CONFIGURACION_FORMATOS; cfg = CONFIGURACION_FORMATOS.get\\('ASMET SALUD'\\); print\\('OK - ASMET SALUD configurado:', cfg is not None\\); print\\('Campos:', list\\(cfg['campos'].keys\\(\\)\\)\\)\")",
       "Bash(python -c ' *)",
-      "Bash(python manage.py shell -c ' *)"
+      "Bash(python manage.py shell -c ' *)",
+      "Bash(python test/test_nits.py)"
     ],
     "deny": [],
     "ask": []
