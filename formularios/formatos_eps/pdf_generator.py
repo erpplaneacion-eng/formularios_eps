@@ -80,7 +80,7 @@ CONFIGURACION_FORMATOS = {
         },
         # Bloque 3: Datos del empleador (8 campos)
         'datos_empleador': {
-            'campo_variable': {'x': 80, 'y': 588, 'fontsize': 6},  # Columna F (Empresa/Area)
+            'campo_variable': {'x': 70, 'y': 588, 'fontsize': 6},  # Columna F (Empresa/Area)
             'nit': {'valor': 'NIT', 'x': 235, 'y': 588},
             'numero_documento': {'x': 310, 'y': 588},
             'direccion': {'valor': 'calle 15 #26-101', 'x': 85, 'y': 603},
