@@ -18,7 +18,13 @@
       "Bash(python -c \"import sys; sys.path.insert\\(0, 'formularios'\\); import django; import os; os.environ.setdefault\\('DJANGO_SETTINGS_MODULE', 'formularios.settings'\\); django.setup\\(\\); from formatos_eps.pdf_generator import CONFIGURACION_FORMATOS; cfg = CONFIGURACION_FORMATOS.get\\('ASMET SALUD'\\); print\\('OK - ASMET SALUD configurado:', cfg is not None\\); print\\('Campos:', list\\(cfg['campos'].keys\\(\\)\\)\\)\")",
       "Bash(python -c ' *)",
       "Bash(python manage.py shell -c ' *)",
-      "Bash(python test/test_nits.py)"
+      "Bash(python test/test_nits.py)",
+      "PowerShell(Get-CimInstance *)",
+      "mcp__plugin_railway_railway__list_projects",
+      "mcp__plugin_railway_railway__list_services",
+      "mcp__plugin_railway_railway__list_deployments",
+      "mcp__plugin_railway_railway__list_domains",
+      "mcp__plugin_railway_railway__get_logs"
     ],
     "deny": [],
     "ask": []
