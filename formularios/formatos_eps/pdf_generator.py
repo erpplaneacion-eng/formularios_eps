@@ -477,6 +477,20 @@ CONFIGURACION_FORMATOS = {
             {'x0': 502, 'y0': 140.5, 'x1': 526, 'y1': 150.5},
             {'x0': 529.5, 'y0': 140.5, 'x1': 552.5, 'y1': 150.5},
             {'x0': 556, 'y0': 140.5, 'x1': 584, 'y1': 150.5},
+            # 66. Fecha de novedad: rótulos DÍA / MES / AÑO
+            {'x0': 267, 'y0': 594, 'x1': 284, 'y1': 603.5},
+            {'x0': 286, 'y0': 594, 'x1': 304.5, 'y1': 603.5},
+            {'x0': 307, 'y0': 594, 'x1': 329, 'y1': 603.5},
+            # 59. Ubicación del empleador: rótulos DIRECCIÓN / TELÉFONO / CORREO / DEPARTAMENTO / MUNICIPIO
+            {'x0': 69, 'y0': 481, 'x1': 172.5, 'y1': 490.5},
+            {'x0': 176, 'y0': 481, 'x1': 266.5, 'y1': 490.5},
+            {'x0': 270, 'y0': 481, 'x1': 388.5, 'y1': 490.5},
+            {'x0': 392, 'y0': 481, 'x1': 498.5, 'y1': 490.5},
+            {'x0': 502, 'y0': 481, 'x1': 584, 'y1': 490.5},
+            # 14. Lugar de nacimiento: rótulos PAÍS / DEPARTAMENTO / MUNICIPIO
+            {'x0': 157, 'y0': 140.5, 'x1': 251.5, 'y1': 150.5},
+            {'x0': 255, 'y0': 140.5, 'x1': 348.5, 'y1': 150.5},
+            {'x0': 352, 'y0': 140.5, 'x1': 447.5, 'y1': 150.5},
         ],
         'campos': {
             # II. Datos básicos (rótulos debajo; se escribe a la derecha de cada rótulo)
@@ -485,7 +499,14 @@ CONFIGURACION_FORMATOS = {
             'PRIMER_NOMBRE': {'x': 380, 'y': 119.5, 'fontsize': 8},
             'SEGUNDO_NOMBRE': {'x': 511, 'y': 119.5, 'fontsize': 7},
             'CEDULA': {'x': 228, 'y': 134, 'fontsize': 9},
+            # 13. Nacionalidad (a la izquierda de la casilla gris, bajo el rótulo)
+            'NACIONALIDAD': {'x': 25, 'y': 149.6, 'fontsize': 6.5},
+            # 14. Lugar de nacimiento
+            'PAIS_NACIMIENTO': {'x': 160, 'y': 149.5, 'fontsize': 8},
+            'DEPARTAMENTO_NACIMIENTO': {'x': 258, 'y': 149.5, 'fontsize': 8},
+            'CIUDAD_NACIMIENTO': {'x': 356, 'y': 149.5, 'fontsize': 8},
             # III. Datos complementarios
+            'ETNIA': {'x': 36, 'y': 171.5, 'fontsize': 9},  # 16. Etnia (siempre 06)
             'AFP': {'x': 28, 'y': 187.5, 'fontsize': 8},
             'SALARIO_BASICO': {'x': 125, 'y': 187.5, 'fontsize': 8},
             'DIRECCION_RESIDENCIA': {'x': 420, 'y': 188, 'fontsize': 7},
@@ -506,10 +527,21 @@ CONFIGURACION_FORMATOS = {
             {'x': 535, 'y': 149.5}, {'x': 541, 'y': 149.5},
             {'x': 559, 'y': 149.5}, {'x': 564.6, 'y': 149.5}, {'x': 570.2, 'y': 149.5}, {'x': 575.8, 'y': 149.5},
         ],
+        # 66. Fecha de novedad = FECHA_INGRESO (DÍA, MES, AÑO)
+        'fecha_nacimiento2': [
+            {'x': 269.7, 'y': 602.3}, {'x': 275.3, 'y': 602.3},
+            {'x': 289.5, 'y': 602.3}, {'x': 295.1, 'y': 602.3},
+            {'x': 306.6, 'y': 602.3}, {'x': 312.2, 'y': 602.3}, {'x': 317.7, 'y': 602.3}, {'x': 323.3, 'y': 602.3},
+        ],
         # Sexo biológico (casilla 11): F arriba, M abajo
         'sexo': {
             '0': {'x': 441, 'y': 135.4},  # Masculino
             '1': {'x': 441, 'y': 126.5},  # Femenino
+        },
+        # Sexo de identificación (casilla 12): mismo valor que el sexo biológico
+        'sexo_identificacion': {
+            '0': {'x': 526.2, 'y': 127},  # M
+            '1': {'x': 512, 'y': 127},    # F
         },
         # X's fijas
         'datos_tramite': [
@@ -522,6 +554,15 @@ CONFIGURACION_FORMATOS = {
             {'x': 143.5, 'y': 126},    # 9. Tipo de documento: C.C.
             {'x': 152.7, 'y': 473.7},  # 56. Empleador tipo de documento: N.I.
             {'x': 438, 'y': 83.3, 'page': 1},  # Pág. 2: identificado con C.C.
+            # Pág. 2: autorización de mensajes de texto, todo en SÍ
+            {'x': 299, 'y': 124, 'page': 1},    # 1
+            {'x': 299, 'y': 157.7, 'page': 1},  # 2
+            {'x': 299, 'y': 187.7, 'page': 1},  # 3
+            {'x': 299, 'y': 213.7, 'page': 1},  # 4
+            {'x': 299, 'y': 233.3, 'page': 1},  # 5
+            {'x': 355.7, 'y': 186, 'page': 1},  # Envío de información por celular/correo
+            {'x': 511.7, 'y': 207.3, 'page': 1},  # Entrega de carta en formato electrónico
+            {'x': 541, 'y': 240.7, 'page': 1},  # Evitando impresiones
         ],
         # 22. ARL
         'administradora_anterior': {
@@ -532,11 +573,11 @@ CONFIGURACION_FORMATOS = {
         'datos_empleador': {
             'campo_variable': {'x': 27, 'y': 474.5, 'fontsize': 5},
             'numero_documento': {'x': 272, 'y': 475.5, 'fontsize': 8},
-            'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 491.4, 'fontsize': 5.5},
-            'telefono': {'valor': '3164219523', 'x': 176, 'y': 491.4, 'fontsize': 5.5},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 270, 'y': 491.4, 'fontsize': 5.5},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 392, 'y': 491.4, 'fontsize': 5.5},
-            'ciudad': {'valor': 'YUMBO', 'x': 502, 'y': 491.4, 'fontsize': 5.5},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 71, 'y': 488.5, 'fontsize': 6.5},
+            'telefono': {'valor': '3164219523', 'x': 178, 'y': 488.5, 'fontsize': 7},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 272, 'y': 488.5, 'fontsize': 5.5},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 394, 'y': 488.5, 'fontsize': 6.5},
+            'ciudad': {'valor': 'YUMBO', 'x': 504, 'y': 488.5, 'fontsize': 7},
         }
     },
     'ENTIDAD PROMOTORA DE SALUD MALLAMAS EPSI': None,
@@ -778,7 +819,9 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'CIUDAD_NACIMIENTO': ciudad_nacimiento,
             'CIUDAD_NACIMIENTO_2': ciudad_nacimiento, # Duplicado
             'PAIS_NACIMIENTO_2': pais_nacimiento, # Duplicado
+            'NACIONALIDAD': pais_nacimiento, # ponytail: la hoja no tiene nacionalidad; se asume el país de nacimiento
             'TIPO_DOCUMENTO_CC': 'CC', # Constante
+            'ETNIA': '06', # Constante (COOSALUD campo 16)
             # Nuevos campos agregados
             'AFP': datos_empleado.get('AFP', ''),
             'SALARIO_BASICO': datos_empleado.get('SALARIO_BASICO', ''),
