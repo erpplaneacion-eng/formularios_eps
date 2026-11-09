@@ -470,70 +470,72 @@ CONFIGURACION_FORMATOS = {
     'ASOCIACION MUTUAL SER EMP7RESA SOLIDARIA DE SALUD EPS-S': None,
     'FAMISANAR': None,
     'COOSALUD': {
-        'archivo': 'Formulario_de_Afiliacion_y_Registro_de_Novedades_eps_coosalud.pdf',
+        # Formulario 2026 (609x935 pt, escaneado). Pag 0: formulario; pag 1: carta de derechos y deberes
+        'archivo': 'Formulario_Afiliacion_COOSALUD_2026.pdf',
+        # Rectángulos blancos que tapan los rótulos DÍA/MES/AÑO antes de escribir la fecha
+        'tapar': [
+            {'x0': 502, 'y0': 140.5, 'x1': 526, 'y1': 150.5},
+            {'x0': 529.5, 'y0': 140.5, 'x1': 552.5, 'y1': 150.5},
+            {'x0': 556, 'y0': 140.5, 'x1': 584, 'y1': 150.5},
+        ],
         'campos': {
-            'CEDULA': {'x': 215, 'y': 190},
-            'PRIMER_APELLIDO': {'x': 75, 'y': 170},
-            'SEGUNDO_APELLIDO': {'x': 215, 'y': 170},
-            'PRIMER_NOMBRE': {'x': 350, 'y': 170},
-            'SEGUNDO_NOMBRE': {'x': 470, 'y': 170},
-            
-            
-            
-            
-            'AFP': {'x': 245, 'y': 250, 'fontsize': 8}, 
-            'SALARIO_BASICO': {'x': 441, 'y': 250, 'fontsize': 8}, 
-            'CORREO_ELECTRONICO': {'x': 425, 'y': 265, 'fontsize': 5},
-            'DIRECCION_RESIDENCIA': {'x': 64, 'y': 265, 'fontsize': 8}, 
-            'TELEFONO_MOVIL': {'x': 365, 'y': 265, 'fontsize': 8}, 
-            'BARRIO': {'x': 310, 'y': 290, 'fontsize': 5}, 
-            'CIUDAD_RESIDENCIA': {'x': 120, 'y': 290, 'fontsize': 8}, 
-            'DEPARTAMENTO_NACIMIENTO2': {'x': 460, 'y': 290, 'fontsize': 8, 'page': 0},
-            'CEDULA_PAGINA_3': {'x': 268, 'y': 736, 'fontsize': 10, 'page': 2}, # TODO: Ajustar coordenadas
+            # II. Datos básicos (rótulos debajo; se escribe a la derecha de cada rótulo)
+            'PRIMER_APELLIDO': {'x': 76, 'y': 119.5, 'fontsize': 8},
+            'SEGUNDO_APELLIDO': {'x': 233, 'y': 119.5, 'fontsize': 8},
+            'PRIMER_NOMBRE': {'x': 380, 'y': 119.5, 'fontsize': 8},
+            'SEGUNDO_NOMBRE': {'x': 511, 'y': 119.5, 'fontsize': 7},
+            'CEDULA': {'x': 228, 'y': 134, 'fontsize': 9},
+            # III. Datos complementarios
+            'AFP': {'x': 28, 'y': 187.5, 'fontsize': 8},
+            'SALARIO_BASICO': {'x': 125, 'y': 187.5, 'fontsize': 8},
+            'DIRECCION_RESIDENCIA': {'x': 420, 'y': 188, 'fontsize': 7},
+            'TELEFONO_MOVIL': {'x': 176, 'y': 199.5, 'fontsize': 8},
+            'CORREO_ELECTRONICO': {'x': 264, 'y': 201.3, 'fontsize': 6.5},
+            'DEPARTAMENTO_NACIMIENTO2': {'x': 500, 'y': 199.5, 'fontsize': 7.5},
+            'CIUDAD_RESIDENCIA': {'x': 26, 'y': 216.3, 'fontsize': 7.5},
+            'BARRIO': {'x': 165, 'y': 216.3, 'fontsize': 7.5},
+            # Página 2: carta de derechos y deberes
+            'NOMBRE_COMPLETO_PAG3': {'x': 55, 'y': 87, 'fontsize': 9, 'page': 1},
+            'CEDULA_PAGINA_2_1': {'x': 72, 'y': 101.5, 'fontsize': 9, 'page': 1},
+            'TELEFONO_MOVIL_PAG3': {'x': 418, 'y': 160, 'fontsize': 8, 'page': 1},
+            'CORREO_ELECTRONICO_PAG2': {'x': 426, 'y': 173, 'fontsize': 8, 'page': 1},
         },
+        # Fecha de nacimiento: DÍA(2) MES(2) AÑO(4) en celdas de la fila 15
         'fecha_nacimiento': [
-            {'x': 452, 'y': 192}, {'x': 464, 'y': 192}, # D
-            {'x': 472, 'y': 192}, {'x': 484, 'y': 192}, # M
-            {'x': 492, 'y': 192}, {'x': 503, 'y': 192}, {'x': 514, 'y': 192}, {'x': 524, 'y': 192} # Y
+            {'x': 508.5, 'y': 149.5}, {'x': 514.5, 'y': 149.5},
+            {'x': 535, 'y': 149.5}, {'x': 541, 'y': 149.5},
+            {'x': 559, 'y': 149.5}, {'x': 564.6, 'y': 149.5}, {'x': 570.2, 'y': 149.5}, {'x': 575.8, 'y': 149.5},
         ],
-        'fecha_nacimiento2': [
-             {'x': 470, 'y': 240, 'page': 1}, {'x': 478, 'y': 240, 'page': 1}, # D
-             {'x': 488, 'y': 240, 'page': 1}, {'x': 497, 'y': 240, 'page': 1}, # M
-             {'x': 504, 'y': 240, 'page': 1}, {'x': 516, 'y': 240, 'page': 1}, {'x': 524, 'y': 240, 'page': 1}, {'x': 533, 'y': 240, 'page': 1} # Y
-        ],        
+        # Sexo biológico (casilla 11): F arriba, M abajo
         'sexo': {
-            '0': {'x': 405, 'y': 190, 'fontsize': 4},  # Masculino
-            '1': {'x': 366, 'y': 190, 'fontsize': 4},  # Femenino
+            '0': {'x': 441, 'y': 135.4},  # Masculino
+            '1': {'x': 441, 'y': 126.5},  # Femenino
         },
-        
-        # Bloque 1: Datos del trámite (5 X's fijas)
+        # X's fijas
         'datos_tramite': [
-            {'x': 180, 'y': 107},   # Tipo de trámite
-            {'x': 434, 'y': 90},  # Tipo de afiliación
-            {'x': 536, 'y': 98},  # Régimen
-            
-            {'x': 124, 'y': 126},  # Tipo de afiliado
-            {'x': 323, 'y': 126, 'fontsize': 4},  # Tipo de cotizante
-            # {'x': 491, 'y': 348, 'fontsize': 4},  # zona
-            
+            {'x': 74.2, 'y': 72.8},    # 1. Trámite: A. Afiliación
+            {'x': 257.8, 'y': 72.8},   # 2. Tipo afiliación: Individual - cotizante o cabeza de familia
+            {'x': 573.3, 'y': 68.5},   # 3. Régimen: Contributivo
+            {'x': 187.8, 'y': 84},     # 5. Tipo de afiliado: Cotizante
+            {'x': 406.2, 'y': 83.5},   # 6. Tipo de cotizante: Dependiente
+            {'x': 143.5, 'y': 126},    # 9. Tipo de documento: C.C.
+            {'x': 152.7, 'y': 473.7},  # 56. Empleador tipo de documento: N.I.
+            {'x': 438, 'y': 83.3, 'page': 1},  # Pág. 2: identificado con C.C.
         ],
-        # Bloque 2: Administradora anterior (SURA)
+        # 22. ARL
         'administradora_anterior': {
             'valor': 'SURA',
-            'x': 78, 'y': 250
+            'x': 503, 'y': 171
         },
-        # Bloque 3: Datos del empleador (8 campos)
+        # V. Datos del empleador (rótulos centrados; se escribe debajo de cada rótulo)
         'datos_empleador': {
-            'campo_variable': {'x': 66, 'y': 745},  # Columna F (Empresa/Area)
-            'nit': {'valor': 'NIT', 'x': 277, 'y': 745},
-            'numero_documento': {'x': 315, 'y': 745},
-            'direccion': {'valor': 'calle 15 #26-101', 'x': 66, 'y': 765},
-            'telefono': {'valor': '3164219523', 'x': 224, 'y': 765},
-            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 294, 'y': 761, 'fontsize': 5},
-            'ciudad': {'valor': 'YUMBO', 'x': 400, 'y': 765},
-            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 483, 'y': 765, 'fontsize': 6},
-           
-            'tipo_documento': {'valor': 'CC', 'x': 165, 'y': 190, 'fontsize': 8},
+            'campo_variable': {'x': 27, 'y': 474.5, 'fontsize': 5},
+            'numero_documento': {'x': 272, 'y': 475.5, 'fontsize': 8},
+            'direccion': {'valor': 'calle 15 #26-101', 'x': 70, 'y': 491.4, 'fontsize': 5.5},
+            'telefono': {'valor': '3164219523', 'x': 176, 'y': 491.4, 'fontsize': 5.5},
+            'correo': {'valor': 'contratacionrh@vallesolidario.com', 'x': 270, 'y': 491.4, 'fontsize': 5.5},
+            'departamento': {'valor': 'VALLE DEL CAUCA', 'x': 392, 'y': 491.4, 'fontsize': 5.5},
+            'ciudad': {'valor': 'YUMBO', 'x': 502, 'y': 491.4, 'fontsize': 5.5},
         }
     },
     'ENTIDAD PROMOTORA DE SALUD MALLAMAS EPSI': None,
@@ -751,6 +753,12 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
         mapa_sexo_2 = config.get('sexo_2', {}) # Nuevo mapa para sexo duplicado
         mapa_sexo_identificacion = config.get('sexo_identificacion', {})
 
+        # Tapar rótulos impresos que estorban (rectángulos blancos), si la EPS lo configura
+        for r in config.get('tapar', []):
+            pg = get_page(r.get('page', 0))
+            if pg:
+                pg.draw_rect(fitz.Rect(r['x0'], r['y0'], r['x1'], r['y1']), color=None, fill=(1, 1, 1))
+
         # -- INSERCIÓN DE DATOS GENÉRICOS --
         
         # Mapeo de variables locales a claves en la configuración
@@ -784,6 +792,7 @@ def rellenar_pdf_empleado(datos_empleado, output_path):
             'TIPO_DOCUMENTO_PAG3': 'CC',
             'DIRECCION_RESIDENCIA_PAG3': datos_empleado.get('DIRECCION_RESIDENCIA', ''),
             'TELEFONO_MOVIL_PAG3': datos_empleado.get('TELEFONO_MOVIL', ''),
+            'CORREO_ELECTRONICO_PAG2': datos_empleado.get('CORREO_ELECTRONICO', ''),
         }
 
         for clave_campo, valor in campos_simples.items():
