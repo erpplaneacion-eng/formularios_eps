@@ -513,9 +513,10 @@ CONFIGURACION_FORMATOS = {
         },
         # X's fijas
         'datos_tramite': [
-            {'x': 74.2, 'y': 72.8},    # 1. Trámite: A. Afiliación
+            {'x': 143.5, 'y': 72.8},   # 1. Trámite: B. Reporte de novedades
             {'x': 257.8, 'y': 72.8},   # 2. Tipo afiliación: Individual - cotizante o cabeza de familia
             {'x': 573.3, 'y': 68.5},   # 3. Régimen: Contributivo
+            {'x': 97.7, 'y': 89.5},   # 4. Contribución solidaria: NO
             {'x': 187.8, 'y': 84},     # 5. Tipo de afiliado: Cotizante
             {'x': 406.2, 'y': 83.5},   # 6. Tipo de cotizante: Dependiente
             {'x': 143.5, 'y': 126},    # 9. Tipo de documento: C.C.
